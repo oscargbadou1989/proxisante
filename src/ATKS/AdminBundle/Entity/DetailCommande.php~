@@ -1,0 +1,74 @@
+<?php
+
+namespace ATKS\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * DetailCommande
+ *
+ * @ORM\Table(name="detail_commande")
+ * @ORM\Entity(repositoryClass="ATKS\AdminBundle\Entity\DetailCommandeRepository")
+ */
+class DetailCommande
+{
+    /**
+     * @ORM\ManyToOne(targetEntity="ATKS\AdminBundle\Entity\PharmacieProduit")
+     */
+    private $pharmacieProduit;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="ATKS\AdminBundle\Entity\Commande", inversedBy="detailCommandes")
+     */
+    private $commande;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quantite", type="integer")
+     */
+    private $quantite;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set quantite
+     *
+     * @param integer $quantite
+     * @return DetailCommande
+     */
+    public function setQuantite($quantite)
+    {
+        $this->quantite = $quantite;
+    
+        return $this;
+    }
+
+    /**
+     * Get quantite
+     *
+     * @return integer 
+     */
+    public function getQuantite()
+    {
+        return $this->quantite;
+    }
+}

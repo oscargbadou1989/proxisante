@@ -1,0 +1,85 @@
+{%extends "ATKSAdminBundle::layout.html.twig"%}
+{%block title%}{{parent()}} Liste des utilisateurs{%endblock title%}
+{% block body %}
+{{parent()}}
+<a class="button large primary" href="{{path('atks_admin_marquer_vue_utilisateur_tout')}}">
+    <i class="icon-eye"></i>
+    Marquer tout vu
+</a>
+<div class="grid fluid">
+    <div class="row">
+        <h2 id="__form__">Liste des utilisateurs ({{totalUtilisateur}})</h2>
+        <div class="example2">
+            <table class="table striped hovered dataTable" id="dataTables-1">
+                <thead>
+                    <tr>
+                        <th class="text-left">Id Phone</th>
+                        <th class="text-left">Première connexion</th>
+                        <th class="text-left">Dernière connexion</th>
+                        <th class="text-left">Plateforme</th>
+                        <th class="text-left">Version</th>
+                        <!--<th class="text-left">Historique de connexion</th>-->
+                        <th class="text-left">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {%for u in utilisateurs%}
+                        <tr style="{%if u.vue==false%}background: #78aa1c{%endif%}">
+                            <td>
+                                {{u.idPhoneUser}} (<span style="color: #008a00; font-weight: bold">{{u.nbreConnexion}}</span>)
+                            </td>
+                            <td>{{u.datePremiereConnexion|date('Y-m-d à H:i:s')}}</td>
+                            <td>{{u.dateDerniereConnexion|date('Y-m-d à H:i:s')}}</td>
+                            <td>{{u.plateforme}}</td>
+                            <td>{{u.version}}</td>
+                            <!--<td>{{u.historiqueConnexion}}</td>-->
+                            <td>
+                                <div class="toolbar" style="float: right">
+                                    <a class="button small js-show-all-streams" title="{%if u.vue==false%}Marquer vu{%else%}Marquer non vu{%endif%}" data-role="" href="{{path('atks_admin_marquer_vue_utilisateur', {'id':u.id})}}"><span class="icon-eye"></span></a>
+                                    <a href="{{path('atks_admin_supprimer_utilisateur', {'id':u.id})}}" class="button small js-show-all-streams" title="Supprimer" data-role=""><span class="icon-remove"></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                    {%endfor%}
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th class="text-left">Id Phone</th>
+                            <th class="text-left">Première connexion</th>
+                            <th class="text-left">Dernière connexion</th>
+                            <th class="text-left">Plateforme</th>
+                            <th class="text-left">Version</th>
+                            <!--<th class="text-left">Historique de connexion</th>-->
+                            <th class="text-left">Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
+                {%if utilisateurs|length>0%}
+                <div class="pagination" style="margin-top: 20px">
+                    <ul>
+                        <li class="first"><a {%if page==1%}class="disabled" {%endif%} href="{{path('atks_admin_list_utilisateur', {'page': 1})}}"><i class="icon-first-2"></i></a></li>
+                        <li class="prev"><a {%if page-1<1%}class="disabled" {%endif%} href="{{path('atks_admin_list_utilisateur', {'page': page-1})}}"><i class="icon-previous"></i></a></li>
+                        {%for i in 1..nbrTotalPages%}
+                        <li><a href="{{path('atks_admin_list_utilisateur', {'page': i})}}" {%if page==i%}class="disabled" {%endif%}>{{i}}</a></li>
+                        {%endfor%}
+                        <li class="next"><a {%if page+1>nbrTotalPages%}class="disabled" {%endif%} href="{{path('atks_admin_list_utilisateur', {'page': page+1})}}"><i class="icon-next"></i></a></li>
+                        <li class="last"><a {%if page==nbrTotalPages%}class="disabled" {%endif%} href="{{path('atks_admin_list_utilisateur', {'page': nbrTotalPages})}}"><i class="icon-last-2"></i></a></li>
+                    </ul>
+                </div>
+                {%endif%}
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+{% block javascripts %}
+{{parent()}}
+    <script>
+        $(function() {
+            $('#dataTables-1').dataTable({
+                "bProcessing": true,
+            });
+        });
+        </script>
+{% endblock javascripts %}

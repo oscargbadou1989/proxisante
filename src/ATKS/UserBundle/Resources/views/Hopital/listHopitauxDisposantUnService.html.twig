@@ -1,0 +1,105 @@
+{%extends "ATKSUserBundle::layout.html.twig"%}
+{%block title%}{{parent()}} Les hôpitaux les plus proche de vous disposant d'un service de {{service}}{%endblock title%}
+{%block body%}
+<div class="">
+    <div class="container">
+        <div class="main-content clearfix">
+            <h2>Les hôpitaux les plus proches de vous disposant d'un service de <span style="font-weight: bold">{{service}}</span> (<span style="font-size: 14px">dans un rayon de {{rayon}} Km</span>)</h2>
+            <h2 style="color: #e77120">Nous en avons retrouvé {{hopitauxLesPlusProche|length}}</h2>
+            <div class="tab-control" data-role="tab-control">
+                <ul class="tabs">
+                    <li title="Sous forme de liste"><a href="#listForm"><i class="icon-list"></i></a></li>
+                    <li class="active"><a href="#mapForm" title="Sous fond cartographique"><i class=" icon-location"></i></a></li>
+                </ul>
+                <div class="frames">
+                    <div class="frame" id="listForm">
+                        {%for h in hopitauxLesPlusProche%}
+                            <div class="listview">
+                                <a class="list" href="{{path('atks_user_detail_hopital', {'id': h.id})}}" title="Cliquer pour plus de détail">
+                                    <div class="list-content">
+                                        <img src="{{image(h.image).resize(130, 130, '000000')}}" class="icon" style="width: 130px; height: 130px">
+                                        <div class="data">
+                                            <h2 class="" style="font-weight: bold">{{h.nom}}</h2>
+                                            <div class="" style="font-weight: normal">{{h.adresse}}</div>
+                                            <div class="" style="color: #aaa">Actuellement <span style="color: {%if h.statut%} green {%else%} red {%endif%}">{%if h.statut%} Ouvert{%else%} Fermé{%endif%}</span> et situé à <span style="color: green">{{h.distance}} Km</span> de vous</div>
+                                            <div class="" style="color: #aaa">Dispose de <span style="color: #e77120">{{h.nbreService}} services de santé </span></div>
+                                            <div class="rating fg-green small"
+                                                 data-role="rating"
+                                                 data-static="true"
+                                                 data-score="{{h.note}}"
+                                                 data-stars="5">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+            {%endfor%}
+                        </div>
+                        <div class="frame" id="mapForm">
+                            <div class="map-layout">
+                                <div id="map" style="height: 500px;">
+
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{%endblock body%}
+{%block javascripts%}
+{{parent()}}
+    <script>
+        if (navigator.geolocation) {
+            function succesGeo(position) {
+                var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                var optionsGmaps = {
+                    mapTypeControl: false,
+                    center: latlng,
+                    navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    zoom: 14
+                };
+                var map = new google.maps.Map(document.getElementById("map"), optionsGmaps);
+                var imageMarkerUser = {
+                    url: '{{asset('bundles/atksuser/images/map-marker-user2.png')}}',
+                    size: new google.maps.Size(29, 51),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(0, 20)
+                };
+                var marker = new google.maps.Marker({
+                    position: latlng,
+                    map: map,
+                    title: "Vous êtes ici",
+                    icon: imageMarkerUser
+                });
+                var imageMarkerSante = {
+                    url: '{{asset('bundles/atksuser/images/map-marker-sante2.png')}}',
+                    size: new google.maps.Size(29, 51),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(0, 20)
+                };
+
+                {%for h in hopitauxLesPlusProche%}
+                            var marker{{h.id}} = new google.maps.Marker({
+                                position: new google.maps.LatLng({{h.latitude}}, {{h.longitude}}),
+                                map: map,
+                                title: "{{h.nom}}",
+                                icon: imageMarkerSante
+                            });
+                            var infowindow{{h.id}} = new google.maps.InfoWindow({
+                                content: "<span style=\"font-weight: bold\">{{h.nom}}</span><br/><span>{{h.adresse}}</span><br/><span style=\"color: green\">Situé à {{h.distance}} Km de vous</span> <a href=\"{{path('atks_user_detail_hopital', {'id': h.id})}}\">Voir détail</a>",
+                                size: new google.maps.Size(100, 100)
+                            });
+                            google.maps.event.addListener(marker{{h.id}}, 'click', function() {
+                                infowindow{{h.id}}.open(map, marker{{h.id}});
+                            });
+                {%endfor%}       
+                        }
+                        navigator.geolocation.getCurrentPosition(succesGeo);
+                    }
+        </script>
+{%endblock javascripts%}

@@ -1,0 +1,91 @@
+{%extends "ATKSUserBundle::layout.html.twig"%}
+{%block title%}{%endblock title%}
+{%block header%}
+{%endblock header%}
+{%block body%}
+<div class="after-slider">
+    <div class="container">
+        <div class="main-content clearfix">
+            <div class="grid" style="margin-top: 20px">
+                <div class="row">
+                    <h1>{{prenom}} {{nom|upper}}</h1>
+                    <div class="" style="width: 100%">
+                        <div class="panel">
+                            <div class="panel-header bg-teal fg-white">
+                                Bulletin de note
+                            </div>
+                            <div class="panel-content" style="background: white">
+                                <div class="listview-outlook">
+                                    <a class="list" href="#">
+                                        <div class="list-content">
+                                            <span class="" style="font-size: 25px; font-weight: normal">Mathématiques</span>
+                                            <div class="" style="font-size: 20px; color: #0067cb;">14.52 / 20</div>
+                                        </div>
+                                    </a>
+                                    <a class="list" href="#">
+                                        <div class="list-content">
+                                            <span class="" style="font-size: 25px; font-weight: normal">Sport</span>
+                                            <div class="" style="font-size: 20px; color: #0067cb;">18 / 20</div>
+                                        </div>
+                                    </a>
+                                    <a class="list" href="#">
+                                        <div class="list-content">
+                                            <span class="" style="font-size: 25px; font-weight: normal">Anglais</span>
+                                            <div class="" style="font-size: 20px; color: #0067cb;">14.52 / 20</div>
+                                        </div>
+                                    </a>
+                                    <a class="list" href="#">
+                                        <div class="list-content">
+                                            <span class="" style="font-size: 25px; font-weight: normal">SPCT</span>
+                                            <div class="" style="font-size: 20px; color: #0067cb;">09 / 20</div>
+                                        </div>
+                                    </a>
+                                    <a class="list" href="#">
+                                        <div class="list-content">
+                                            <span class="" style="font-size: 25px; font-weight: normal">SVT</span>
+                                            <div class="" style="font-size: 20px; color: #0067cb;">16.33 / 20</div>
+                                        </div>
+                                    </a>
+                                    <a class="list" href="#">
+                                        <div class="list-content">
+                                            <span class="" style="font-size: 25px; font-weight: normal">Français</span>
+                                            <div class="" style="font-size: 20px; color: #0067cb;">11.42 / 20</div>
+                                        </div>
+                                    </a>
+                                    <a class="list" href="#">
+                                        <div class="list-content">
+                                            <span class="" style="font-size: 25px; font-weight: normal">Philosophie</span>
+                                            <div class="" style="font-size: 20px; color: #0067cb;">13 / 20</div>
+                                        </div>
+                                    </a>
+                                    <a class="list" href="#">
+                                        <div class="list-content">
+                                            <span class="" style="font-size: 25px; font-weight: normal">Histoire-Géo</span>
+                                            <div class="" style="font-size: 20px; color: #0067cb;">18 / 20</div>
+                                        </div>
+                                    </a>
+                                    <a class="list marked" href="#">
+                                        <div class="list-content">
+                                            <span class="" style="font-size: 25px; font-weight: normal; color: #e77120">Moyenne Semestrielle</span>
+                                            <div class="" style="font-size: 20px; color: #0067cb;">16.33 / 20</div>
+                                            <div class="" style="font-size: 16px;">Rang: 2<sup>ème</sup></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock body%}
+{%block footer%}
+{%endblock footer%}
+{% block javascripts %}
+<script src="{{asset('bundles/atksadmin/js/jquery.min.js')}}"></script>
+<script src="{{asset('bundles/atksadmin/js/jquery.widget.min.js')}}"></script>
+<script src="{{asset('bundles/atksadmin/js/jquery.mousewheel.js')}}"></script>
+<script src="{{asset('bundles/atksadmin/js/metro.min.js')}}"></script>
+{% endblock javascripts %}

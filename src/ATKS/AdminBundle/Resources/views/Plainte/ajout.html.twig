@@ -1,0 +1,81 @@
+{%extends "ATKSAdminBundle::layout.html.twig"%}
+{%block title%}{{parent()}} Ajout de plainte{%endblock title%}
+{%block body%}
+{{parent()}}
+{%block bodycontent%}
+<div class="grid fluid">
+  <div class="row">
+    <div class="span5">
+      <h2 id="__form__">Ajout d'un service à un hopital</h2>
+      <div class="example2" style="padding: 10px">
+        <form action="" {{ form_enctype(form) }} method="POST">
+          <div class="row">
+            <div class="span12">
+              {{ form_label(form.plainte, "Entrer les plaintes des patients") }}
+              <span style="color: red">{{ form_errors(form.plainte) }}</span>
+              <div class="input-control select">
+                {{ form_widget(form.plainte) }}
+              </div>
+
+              {{ form_label(form.service, "Choisir un service") }}
+              <span style="color: red">{{ form_errors(form.service) }}</span>
+              <div class="input-control select">
+                {{ form_widget(form.service) }}
+              </div>
+
+              <div style="margin-top: 0px;">
+                <button type="submit" class="button large primary">
+                  <i class="icon-checkbox on-left"></i>
+                  Valider
+                </button>
+              </div>
+
+            </div>
+          </div>
+          {{ form_widget(form) }}
+        </form>
+      </div>
+    </div>
+    <div class="span7">
+      <h2 id="__form__">Les plainte</h2>
+      <div class="example2" style="padding: 10px">
+        <table class="table striped hovered dataTable" id="dataTables-1">
+          <thead>
+            <tr>
+              <th class="text-left" style="width: 10%">N°</th>
+              <th class="text-left" style="width: 50%">Plainte</th>
+              <th class="text-left" style="width: 20%">Specialite</th>
+              <th class="text-left" style="width: 20%">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {%for p in plaintes %}
+            <tr>
+              <td>
+                {{loop.index}}
+              </td>
+              <td>
+                {{p.plainte}}
+              </td>
+              <td>
+                {{p.service.nom}}
+              </td>
+              <td>
+                <div class="toolbar" style="float: right">
+                  <a href="#" class="button small js-show-all-streams" title="Voir les hôpitaux disposant de ce service" data-role=""><span class="icon-eye"></span></a>
+                  <a href="#" class="button small js-show-all-streams" title="Modifier" data-role=""><span class="icon-pencil"></span></a>
+                  <a href="#" class="button small js-show-all-streams" title="Supprimer" data-role=""><span class="icon-remove"></span></a>
+                </div>
+              </td>
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%endblock bodycontent%}
+{%endblock body%}

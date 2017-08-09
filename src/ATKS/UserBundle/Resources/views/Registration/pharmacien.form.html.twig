@@ -1,0 +1,68 @@
+{% extends "ATKSAdminBundle::layout_admin_register.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{%block title%}{{parent()}} Création de compte{%endblock title%}
+{% block fos_user_content %}
+                <div class="grid fluid">
+                    <div class="row">
+                        <h2 id="__form__">Création de compte</h2>
+                        <div class="example2">
+
+
+<form action="{{ path('atks_pharmacien_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+        
+    <fieldset>
+              <legend>Paramètres de compte ATIKIN</legend>
+                <div class="row">        
+                <div class="span6"> 
+                        {{ form_label(form.email, "Email") }}
+                        <div class="input-control text" data-role="input-control">
+                        <span style="color: red">{{ form_errors(form.email) }}</span>
+                        {{ form_widget(form.email) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                        
+                        {{ form_label(form.username, "Nom d'utilisateur") }}
+                        <div class="input-control text" data-role="input-control">
+                        <span style="color: red">{{ form_errors(form.username) }}</span>
+                        {{ form_widget(form.username) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>      
+                        
+                        
+                        {{ form_label(form.pharmacie, "Choisir une pharmacie") }}
+                        <span style="color: red">{{ form_errors(form.pharmacie) }}</span>
+                        <div class="input-control select">
+                        {{ form_widget(form.pharmacie) }}
+                        </div>
+                </div>
+                <div class="span6">
+                        {{ form_label(form.plainPassword.first, "Mot de passe") }}
+                        <div class="input-control password" data-role="input-control">
+                        <span style="color: red">{{ form_errors(form.plainPassword.first) }}</span>
+                        {{ form_widget(form.plainPassword.first) }}
+                         <button class="btn-reveal" tabindex="-1" type="button"></button>
+                        </div>    
+                        
+                        {{ form_label(form.plainPassword.second, "Resaisir mot de passe") }}
+                        <div class="input-control password" data-role="input-control">
+                        <span style="color: red">{{ form_errors(form.plainPassword.second) }}</span>
+                        {{ form_widget(form.plainPassword.second) }}
+                         <button class="btn-reveal" tabindex="-1" type="button"></button>
+                        </div>
+                        
+                        <div style="margin-top: 25px;">
+                            <button type="submit" class="button large primary">
+                                <i class="icon-checkbox on-left"></i>
+                                {{ 'registration.submit'|trans }}
+                            </button>
+                        </div>
+                </div>
+                </div>
+              </fieldset>
+{{ form_widget(form) }}
+            
+    
+</form>
+                        </div> </div> </div>            
+
+{% endblock fos_user_content %}

@@ -1,0 +1,15 @@
+parameters:
+#    atks_admin.example.class: ATKS\AdminBundle\Example
+
+services:
+  proxi_sante_global:
+        class: "ATKS\AdminBundle\Services\GlobalVariables"
+        arguments : ["@doctrine"]
+        tags:
+            - {name: twig.extension}
+  proxi_sante_service:
+    class: ATKS\AdminBundle\Services\ProxiSanteService
+    arguments: ["@doctrine.orm.entity_manager"]
+#    atks_admin.example:
+#        class: %atks_admin.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

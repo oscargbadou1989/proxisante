@@ -1,0 +1,61 @@
+{% extends "DDPUserBundle::layout_utilisateur_simple_register.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block title %} DDP | Utilisateur | Login {% endblock title %}
+{% block fos_user_content %}
+{% if error %}
+<div class="grid fluid">
+    <div class="row">
+        <div class="span6">
+            <div class="notice marker-on-bottom bg-red fg-white">
+                <p style="text-align: center">{{ error|trans({}, 'FOSUserBundle') }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="grid fluid">
+    <div class="row">
+        <div class="span6">
+            <h2 id="__form__">Connexion</h2>
+            <div class="example2">
+                <form action="{{ path("ddp_utilisateur_simple_login_check") }}" method="post" class="utopia">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }} </label>
+                    <div class="input-control text" data-role="input-control">
+                        <input type="text" id="username" name="_username" required="required" class="span12 validate[required]"/>
+                        <button class="btn-clear" tabindex="-1" type="button"></button>
+                    </div>
+
+                    <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+                    <div class="input-control password" data-role="input-control">
+                        <input type="password" id="password" name="_password" required="required" class="span12  validate[required]"/>
+                        <button class="btn-reveal" tabindex="-1" type="button"></button>
+                    </div>
+                    <div class="input-control checkbox" data-role="input-control">
+                        <label>
+                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" style="display: inline">
+                            <span class="check"></span>
+                            {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+                        </label>
+                    </div>
+                    <div style="margin-top: 10px">
+                        <button type="submit" id="_submit" name="_submit" class="button bg-green fg-white large" style="display: inline">
+                            <i class="icon-user-2 on-left"></i>
+                                    {{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}
+                        </button>
+                            <span style="font-size: 9px; color: black">Si vous n'avez pas un compte,</span>     
+                            <a class="button large primary" href="{{path('ddp_utilisateur_simple_registration_register')}}">
+                            Inscrivez vous
+                            <i class="icon-user-2 on-left"></i>
+                        </a>
+                    </div>
+                </form>
+            </div> 
+        </div>
+    </div>
+</div>                              
+{% endblock fos_user_content %}
+
+{%block objetRecementTrouve%}
+{{parent()}}
+{%endblock objetRecementTrouve%}

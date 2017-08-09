@@ -1,0 +1,111 @@
+{%extends "ATKSUserBundle::layout.html.twig"%}
+{%block title%}{{parent()}} {{pharmacie.nom}}{%endblock title%}
+{%block body%}
+<div class="" style="margin-top: 10px">
+    <div class="container">
+        <div class="main-content clearfix">
+            <div style="width: 49%; border: 1px solid #ccc; float: left">
+                <img src="{%if pharmacie.image.url != null%}{{image(pharmacie.image.webPath).resize(557, 300, '000000')}}{%else%}{{image('bundles/atksadmin/images/caducee-pharmacie.jpg').resize(557, 300, '000000')}}{%endif%}"/>
+                <h3>Situation de la pharmacie sur une carte</h3>
+                <div id="map" style="height: 300px">
+                
+                </div>
+            </div>
+            <div style="width: 49%; border: 1px solid #ccc; float: right">
+                <div style="margin: 10px; font-weight: bold; font-size: 25px">
+                    {{pharmacie.nom}}
+                </div>
+                {%if pharmacie.adresse%}
+                <div style="margin: 10px">
+                    Adresse: {{pharmacie.adresse}}
+                </div>
+                {%endif%}
+                {%if pharmacie.telephone%}
+                <div style="margin: 10px">
+                    Téléphone: {{pharmacie.telephone}}
+                </div>
+                {%endif%}
+                {%if pharmacie.fax%}
+                <div style="margin: 10px">
+                    Fax: {{pharmacie.fax}}
+                </div>
+                {%endif%}
+                {%if pharmacie.email%}
+                <div style="margin: 10px">
+                    Email: <a href="mailto:{{pharmacie.email}}">{{pharmacie.email}}</a>
+                </div>
+                {%endif%}
+                {%if pharmacie.siteWeb%}
+                <div style="margin: 10px">
+                    Site web: <a herf="http://{{pharmacie.siteWeb}}">{{pharmacie.siteWeb}}</a>
+                </div>
+                {%endif%}
+                <div style="margin: 10px">
+                    Horaire d'ouverture: {{pharmacie.heureOuverture|date('H')}}h - {{pharmacie.heureFermeture|date('H')}}h
+                </div>
+                <span style="font-size: 14px; color: #c29008; margin-left: 10px">Vous pouvez aussi noter cette pharmacie:</span> <div style="margin-left: 10px" id="rating_2" class="meduim-size fg-green"></div>
+                <div style="margin: 10px; font-weight: bold; font-size: 25px">
+                    Spécialités
+                </div>
+                <div class="listview-outlook" data-role="listview" style="margin: 10px">
+                    {%for ps in pharmacieSpecialite%}
+                    <a href="#" class="list marked">
+                        <div class="list-content">
+                            <span class="list-title">{{ps.specialite.nom}}</span>
+                        </div>
+                    </a>
+                    {%endfor%}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{%endblock body%}
+{%block javascripts%}
+{{parent()}}
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script>
+    if (navigator.geolocation) {
+            function succesGeo(position) {
+                var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                var latlngSante = new google.maps.LatLng({{pharmacie.latitude}}, {{pharmacie.longitude}});
+                var optionsGmaps = {
+                    mapTypeControl: false,
+                    center: latlngSante,
+                    navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    zoom: 12
+                };
+                var map = new google.maps.Map(document.getElementById("map"), optionsGmaps);
+                var imageMarkerUser = {
+                    url: '{{asset('bundles/atksuser/images/map-marker-user2.png')}}',
+                    size: new google.maps.Size(29, 51),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(0, 20)
+                };
+                var marker = new google.maps.Marker({
+                    position: latlng,
+                    map: map,
+                    title: "Vous êtes ici",
+                    icon: imageMarkerUser
+                });
+                var imageMarkerSante = {
+                    url: '{{asset('bundles/atksuser/images/map-marker-sante2.png')}}',
+                    size: new google.maps.Size(29, 51),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(0, 20)
+                };
+
+                            var marker{{pharmacie.id}} = new google.maps.Marker({
+                                position: new google.maps.LatLng({{pharmacie.latitude}}, {{pharmacie.longitude}}),
+                                map: map,
+                                title: "{{pharmacie.nom}}",
+                                icon: imageMarkerSante
+                            });
+                        }
+                        navigator.geolocation.getCurrentPosition(succesGeo);
+                    }
+    </script>
+{%endblock javascripts%}

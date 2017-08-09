@@ -1,0 +1,62 @@
+{%extends "ATKSAdminBundle::layout.html.twig"%}
+{%block title%}{{parent()}} Liste des administrateurs de Atikin{%endblock title%}
+{% block body %}
+{{parent()}}
+<a class="button large primary" href="{{path('atks_admin_registration_register')}}">
+    <i class="icon-plus-2"></i>
+    Admin
+</a>
+<div class="grid fluid">
+    <div class="row">
+        <h2 id="__form__">Liste des administrateurs de DDP.COM</h2>
+        <div class="example2">
+            <table class="table striped hovered dataTable" id="dataTables-1">
+                <thead>
+                    <tr>
+                        <th class="text-left">Nom d'utilisateur</th>
+                        <th class="text-left">Email</th>
+                        <th class="text-left">Dernière connexion</th>
+                        <th class="text-left">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {%for a in admins%}
+                        <tr>
+                            <td>
+                                {{a.username}}
+                            </td>
+                            <td>{{a.email}}</td>
+                            <td>{{a.lastLogin|date('d/m/Y à H:i:s')}}</td>
+                            <td>
+                                <div class="toolbar" style="float: right">
+                                    <a href="{%if app.user.id == a.id%}#{%else%}{{path('atks_admin_supprimer_admin', {'id':a.id})}}{%endif%}" class="button small js-show-all-streams" title="Supprimer" data-role=""><span class="icon-remove"></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                    {%endfor%}
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                        <th class="text-left">Nom d'utilisateur</th>
+                        <th class="text-left">Email</th>
+                        <th class="text-left">Dernière connexion</th>
+                        <th class="text-left">Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+{% block javascripts %}
+{{parent()}}
+    <script>
+        $(function() {
+            $('#dataTables-1').dataTable({
+                "bProcessing": true,
+            });
+        });
+        </script>
+{% endblock javascripts %}

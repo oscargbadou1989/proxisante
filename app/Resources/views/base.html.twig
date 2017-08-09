@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>{% block title %}Proxi Santé |{% endblock title%}</title>
+        {% block stylesheets %}
+        <link rel="shortcut icon" type="image/x-icon" href="{{asset('bundles/atksadmin/images/favicon.ico')}}">
+        <link href="{{asset('bundles/atksadmin/css/metro-bootstrap.css')}}" rel="stylesheet" />
+        <link href="{{asset('bundles/atksadmin/css/metro-bootstrap-responsive.css')}}" rel="stylesheet" />
+        <link href="{{asset('bundles/atksadmin/css/iconFont.css')}}" rel="stylesheet" />
+        <link href="{{asset('bundles/atksadmin/css/ddpcss.css')}}" rel="stylesheet" />
+        {% endblock stylesheets%}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    {%set vars = getVars()%}
+    <body class="metro">
+        {% block header %}
+            <header style="margin-bottom: 20px">
+                <nav class="navigation-bar fixed-top bg-green dark">
+                    <nav class="navigation-bar-content container">
+                        {%block headercontent%}
+
+                        {%endblock headercontent%}
+                    </nav>
+                </nav>
+            </header>
+        {% endblock header%}
+
+            <div class="container">
+                <div class="main-content clearfix" style="margin-top: 50px;">
+                    {% block body %}
+
+
+                    {% endblock body %}
+                    </div> <!-- End of tiles -->
+                </div>
+
+        {%block footer%}
+            <footer>
+                <div class="bottom-menu-wrapper container">
+                    <ul class="horizontal-menu compact">
+                        <li>© 2014 PROXI SANTE</li>
+                        <li><a href="">Conditions d'utilisation</a></li>
+                        <li><a href="">A propos</a></li>
+                        <li><a href="">Contact</a></li>
+                    </ul>
+                </div>
+            </footer>
+        {%endblock footer%}
+        {% block javascripts %}
+                <script src="{{asset('bundles/atksadmin/js/jquery.min.js')}}"></script>
+                <script src="{{asset('bundles/atksadmin/js/jquery.widget.min.js')}}"></script>
+                <script src="{{asset('bundles/atksadmin/js/jquery.mousewheel.js')}}"></script>
+                <script src="{{asset('bundles/atksadmin/js/metro.min.js')}}"></script>
+        {% endblock javascripts%}
+            </body>
+        </html>

@@ -1,0 +1,7 @@
+parameters:
+#    atks_pharmacie.example.class: ATKS\PharmacieBundle\Example
+
+services:
+#    atks_pharmacie.example:
+#        class: %atks_pharmacie.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

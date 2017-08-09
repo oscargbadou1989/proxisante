@@ -1,0 +1,103 @@
+{%extends "ATKSAdminBundle::layout.html.twig"%}
+{%block title%}{{parent()}} Liste des publicités{%endblock title%}
+{% block body %}
+{{parent()}}
+<a class="button large primary" href="{{path('atks_admin_ajout_publicite')}}">
+    <i class="icon-plus-2"></i>
+    Publicite
+</a>
+<div class="grid fluid">
+    <div class="row">
+        <h2 id="__form__">Liste des publicités</h2>
+        <div class="example2" style="padding: 10px">
+            <table class="table striped hovered dataTable" id="dataTables-1">
+                <thead>
+                    <tr>
+                        <th class="text-left" style="width: 10%">Image</th>
+                            <th class="text-left" style="width: 15%">Nom Structure</th>
+                            <th class="text-left" style="width: 10%">Libellé</th>
+                            <th class="text-left" style="width: 10%">Contact</th>
+                            <th class="text-left" style="width: 10%">Durée</th>
+                            <th class="text-left" style="width: 30%">Message</th>
+                            <th class="text-left" style="width: 5%">Actif</th>
+                            <th class="text-left" style="width: 10%">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {%for p in publicites%}
+                        <tr>
+                            <td>
+                                {%if p.images%}
+                                    <img src="{{image(p.images[0].webPath).resize(60, 60, '000000')}}" style="width: 60px; height: 60px"/>
+                                {%else%}
+                                <img src="{{asset('bundles/atksadmin/images/caducee-pharmacie.jpg')}}" style="width: 60px; height: 60px"/>
+                                {%endif%}
+                            </td>
+                            <td>{{p.nomStructure}}</td>
+                            <td>{{p.libelle}}</td>
+                            <td> 
+                                {%if p.telephone%}{{p.telephone}}{%endif%}<br/>
+                                {%if p.email%}<a href="mailto:{{p.email}}">{{p.email}}</a>{%endif%}<br/>
+                                {%if p.siteWeb%}<a href="http://{{p.siteWeb}}">{{p.siteWeb}}</a>{%endif%}<br/>
+                                {%if p.adresse%}{{p.adresse}}{%endif%}<br/>
+                            </td>
+                            <td> 
+                                {{p.dateDebut|date('Y-m-d')}} - {{p.dateFin|date('Y-m-d')}}<br/>
+                            </td>
+                            <td> 
+                                {{p.messageFlash}}
+                            </td>
+                            <td> 
+                                {{p.actif}}
+                            </td>
+                            <td>
+                                <div class="toolbar" style="float: right">
+                                    <a href="{{path('atks_admin_modifier_pharmacie', {'id':p.id})}}" class="button js-show-all-streams" title="Modifier" data-role=""><span class="icon-pencil"></span></a>
+                                    <a href="{{path('atks_admin_supprimer_pharmacie', {'id':p.id})}}" class="button js-show-all-streams" title="Supprimer" data-role=""><span class="icon-remove"></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                    {%endfor%}
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th class="text-left" style="width: 10%">Image</th>
+                            <th class="text-left" style="width: 15%">Nom Structure</th>
+                            <th class="text-left" style="width: 10%">Libellé</th>
+                            <th class="text-left" style="width: 10%">Contact</th>
+                            <th class="text-left" style="width: 10%">Durée</th>
+                            <th class="text-left" style="width: 30%">Message</th>
+                            <th class="text-left" style="width: 5%">Actif</th>
+                            <th class="text-left" style="width: 10%">Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
+                {%if publicites|length>0%}
+                <div class="pagination" style="margin-top: 20px">
+                    <ul>
+                        <li class="first"><a {%if page==1%}class="disabled" {%endif%} href="{{path('atks_admin_list_publicite', {'page': 1})}}"><i class="icon-first-2"></i></a></li>
+                        <li class="prev"><a {%if page-1<1%}class="disabled" {%endif%} href="{{path('atks_admin_list_publicite', {'page': page-1})}}"><i class="icon-previous"></i></a></li>
+                        {%for i in 1..nbrTotalPages%}
+                        <li><a href="{{path('atks_admin_list_publicite', {'page': i})}}" {%if page==i%}class="disabled" {%endif%}>{{i}}</a></li>
+                        {%endfor%}
+                        <li class="next"><a {%if page+1>nbrTotalPages%}class="disabled" {%endif%} href="{{path('atks_admin_list_publicite', {'page': page+1})}}"><i class="icon-next"></i></a></li>
+                        <li class="last"><a {%if page==nbrTotalPages%}class="disabled" {%endif%} href="{{path('atks_admin_list_publicite', {'page': nbrTotalPages})}}"><i class="icon-last-2"></i></a></li>
+                    </ul>
+                </div>
+                {%endif%}
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+{% block javascripts %}
+{{parent()}}
+    <script>
+        $(function() {
+            $('#dataTables-1').dataTable({
+                "bProcessing": true,
+            });
+        });
+        </script>
+{% endblock javascripts %}

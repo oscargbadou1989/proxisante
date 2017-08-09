@@ -1,0 +1,152 @@
+{%extends "::base.html.twig"%}
+{%block title%}{{parent()}} Admin |{%endblock title%}
+{%block headercontent%}
+<a class="element" href="{{path('atks_admin_accueil')}}" title="Atikin Server">
+    <img src="{{asset('bundles/atksadmin/images/logoAtks.PNG')}}" style="width: 25px; height: 25px"/>
+    Proxi Santé
+</a>
+<item class="element-divider"></item>
+<item class="element">
+    <a class="dropdown-toggle" href="javascript:void(0)">
+        Administration
+        {%if (vars.nbreUtilisateurNonVue + vars.nbreVisiteurNonVue)>0%}<sup><small class="bg-red fg-white" style="font-size: 12px; font-family: Arial; padding: 2px"> {{vars.nbreUtilisateurNonVue + vars.nbreVisiteurNonVue}} </small></sup>{%endif%}
+    </a>
+    <ul class="dropdown-menu" data-role="dropdown">
+        <li><a href="{{path('atks_admin_accueil')}}">Tableau de bord</a></li>
+        <!--<li class="divider"></li>
+        <li><a href="{#{path('atks_admin_list_pharmacien')}#}">Utilisateurs pharmacie</a></li>-->
+        <li class="divider"></li>
+        <li><a href="{{path('atks_admin_list_utilisateur')}}">Les utilisateurs {%if vars.nbreUtilisateurNonVue>0%}<sup><small class="bg-red fg-white" style="font-size: 12px; font-family: Arial; padding: 2px"> {{vars.nbreUtilisateurNonVue}} </small></sup>{%endif%}</a></li>
+        <li class="divider"></li>
+        <li><a href="{{path('atks_admin_list_visiteur')}}">Les visiteurs {%if vars.nbreVisiteurNonVue>0%}<sup><small class="bg-red fg-white" style="font-size: 12px; font-family: Arial; padding: 2px"> {{vars.nbreVisiteurNonVue}} </small></sup>{%endif%}</a></li>
+        <li class="divider"></li>
+        <li><a href="{{path('atks_admin_list_admin')}}">Les admins</a></li>
+    </ul>
+</item>
+        <item class="element-divider"></item>
+<item class="element">
+    <a class="dropdown-toggle" href="javascript:void(0)">
+        Pharmacie
+        {%if vars.nbrePharmaciesUserNonVue>0%}<sup><small class="bg-red fg-white" style="font-size: 12px; font-family: Arial; padding: 2px"> {{vars.nbrePharmaciesUserNonVue}} </small></sup>{%endif%}
+    </a>
+    <ul class="dropdown-menu" data-role="dropdown">
+        <li><a href="{{path('atks_admin_ajout_pharmacie')}}">Ajouter une pharmacie</a></li>
+        <li class="divider"></li>
+        <li><a href="{{path('atks_admin_list_pharmacie')}}">Les pharmacies</a></li>
+        <li class="divider"></li>
+        <li><a href="{{path('atks_admin_list_pharmacie_soumis_user')}}">
+                Pharmacies soumises par les utilisateurs
+                {%if vars.nbrePharmaciesUserNonVue>0%}<sup><small class="bg-red fg-white" style="font-size: 12px; font-family: Arial; padding: 2px"> {{vars.nbrePharmaciesUserNonVue}} </small></sup>{%endif%}
+            </a></li>
+        <li class="divider"></li>
+        <li><a href="{{path('atks_admin_list_specialite_pharmacie')}}">Spécialité pharmacie</a></li>
+        <li class="divider"></li>
+        <li><a href="{{path('atks_admin_ajout_pharmacie_specialite')}}">Ajouter spécialité à pharmacie</a></li>
+    </ul>
+</item>
+            <item class="element-divider"></item>
+<item class="element">
+    <a class="dropdown-toggle" href="javascript:void(0)">
+        Hôpital
+        {%if vars.nbreHopitauxUserNonVue>0%}<sup><small class="bg-red fg-white" style="font-size: 12px; font-family: Arial; padding: 2px"> {{vars.nbreHopitauxUserNonVue}} </small></sup>{%endif%}
+    </a>
+    <ul class="dropdown-menu" data-role="dropdown">
+        <li><a href="{{path('atks_admin_ajout_hopital')}}">Ajouter un hôpital</a></li>
+        <li class="divider"></li>
+        <li><a href="{{path('atks_admin_list_hopital')}}">Les hôpitaux</a></li>
+        <li class="divider"></li>
+        <li><a href="{{path('atks_admin_list_hopital_soumis_user')}}">
+                Hôpitaux soumis par les utilisateurs
+                {%if vars.nbreHopitauxUserNonVue>0%}<sup><small class="bg-red fg-white" style="font-size: 12px; font-family: Arial; padding: 2px"> {{vars.nbreHopitauxUserNonVue}} </small></sup>{%endif%}
+            </a></li>
+        <li class="divider"></li>
+        <li><a href="{{path('atks_admin_list_service_sante')}}">Service de santé</a></li>
+        <li class="divider"></li>
+        <li><a href="{{path('atks_admin_ajout_hopital_service')}}">Ajouter service à hopital</a></li>
+    </ul>
+</item>
+<item class="element-divider"></item>
+<a class="element" href="{{path('atks_admin_list_probleme')}}">
+    Problèmes
+    {%if vars.nbreProblemeNonVue>0%}<sup><small class="bg-red fg-white" style="font-size: 12px; font-family: Arial; padding: 2px"> {{vars.nbreProblemeNonVue}} </small></sup>{%endif%}
+</a>
+<item class="element-divider"></item>
+<a class="element" href="{{path('atks_admin_ajout_plainte')}}">
+    Plaintes
+</a>
+<item class="element-divider"></item>
+<item class="element">
+    <a class="dropdown-toggle" href="javascript:void(0)">
+        Publicité
+    </a>
+    <ul class="dropdown-menu" data-role="dropdown">
+        <li><a href="{{path('atks_admin_ajout_publicite')}}">Ajouter une publicité</a></li>
+        <li class="divider"></li>
+        <li><a href="{{path('atks_admin_list_publicite')}}">Les publicités</a></li>
+    </ul>
+</item>
+<item class="element-divider"></item>
+<item class="element">
+    <a class="dropdown-toggle" href="javascript:void(0)">
+        Bot Messenger
+    </a>
+    <ul class="dropdown-menu" data-role="dropdown">
+        <li><a href="{{path('atks_admin_fb_user')}}">Fb User</a></li>
+        <li class="divider"></li>
+        <li><a href="{{path('atks_admin_fb_message')}}">Fb Message</a></li>
+        <li class="divider"></li>
+        <li><a href="{{path('atks_admin_fb_interrogatoire')}}">Fb Interrogatoire</a></li>
+        <li class="divider"></li>
+        <li><a href="{{path('atks_admin_list_publicite')}}">Fb User Ask</a></li>
+    </ul>
+</item>
+
+<item class="element-divider"></item>
+<div class="element place-right">
+    <a class="dropdown-toggle" href="#">
+        <span class="icon-cog"></span>
+    </a>
+    <ul class="dropdown-menu place-right" data-role="dropdown">
+        {%if is_granted("IS_AUTHENTICATED_REMEMBERED")%}
+            <li><a href="{{path('atks_admin_logout')}}">Déconnexion</a></li>
+            <li><a href="{{path('atks_user_accueil')}}">Visité le site</a></li>
+            {%endif%}
+                </ul>
+            </div>
+
+            <span class="element-divider place-right"></span>
+            <button class="element image-button image-left place-right">
+                    {%if is_granted("IS_AUTHENTICATED_REMEMBERED")%}
+    {{app.user.username}}
+                    <img src="{{asset('bundles/atksadmin/images/user.png')}}"/>
+    {%else%}
+                    <a href="{{path('atks_admin_login')}}">Connexion</a>
+                    <img src="{{asset('bundles/atksadmin/images/user.png')}}"/>
+    {%endif%}
+                </button>
+{%endblock headercontent%}
+{% block body %}
+{% for type, messages in app.session.flashbag.all() %}
+                            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    <div class="grid fluid">
+                        <div class="row">
+                            <div class="span12">
+                                                {%if type=="success"%}
+                                    <div class="notice marker-on-bottom bg-green fg-white">
+                                        <p style="text-align: center">{{ message }}</p>
+                                    </div>
+                                                {%else%}
+                                    <div class="notice marker-on-bottom bg-red fg-white">
+                                        <p style="text-align: center">{{ message }}</p>
+                                    </div>
+                                                {%endif%}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                            {% endfor %}
+                            {% endfor %}
+
+{% endblock body %}

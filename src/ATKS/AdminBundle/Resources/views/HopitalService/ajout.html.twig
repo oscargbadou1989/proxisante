@@ -1,0 +1,99 @@
+{%extends "ATKSAdminBundle::layout.html.twig"%}
+{%block title%}{{parent()}} Ajout d'un servie à un hopital{%endblock title%}
+{%block body%}
+{{parent()}}
+{%block bodycontent%}
+<div class="grid fluid">
+    <div class="row">
+    <div class="span12">
+        <h2 id="__form__">Ajout d'un service à un hopital</h2>
+        <div class="example2" style="padding: 10px">
+            <form action="" {{ form_enctype(form) }} method="POST">
+                <div class="row">            
+                <div class="span6">
+                        {{ form_label(form.hopital, "Choisir un hopital") }}
+                        <span style="color: red">{{ form_errors(form.hopital) }}</span>
+                        <div class="input-control select">
+                        {{ form_widget(form.hopital) }}
+                        </div>
+                        
+                        {{ form_label(form.service, "Choisir un service") }}
+                        <span style="color: red">{{ form_errors(form.service) }}</span>
+                        <div class="input-control select">
+                        {{ form_widget(form.service) }}
+                        </div>
+                        
+                        {{ form_label(form.heureOuverture, "Heure d'ouverture") }}
+                        <span style="color: red">{{ form_errors(form.heureOuverture) }}</span>
+                        <div class="input-control text" data-role="input-control">
+                        {{ form_widget(form.heureOuverture) }}
+                            <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                        
+                        {{ form_label(form.heureFermeture, "Heure de fermeture") }}
+                        <span style="color: red">{{ form_errors(form.heureFermeture) }}</span>
+                        <div class="input-control text" data-role="input-control">
+                        {{ form_widget(form.heureFermeture) }}
+                            <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                        
+                        {{ form_label(form.fraisPrestation, "Frais prestation") }}
+                        <span style="color: red">{{ form_errors(form.fraisPrestation) }}</span>
+                        <div class="input-control text" data-role="input-control" >
+                        {{ form_widget(form.fraisPrestation) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                        
+                        
+                        
+                </div>        
+                <div class="span6">
+                        {{ form_label(form.nomSpecialiste, "Nom d'un spécialiste") }}
+                        <span style="color: red">{{ form_errors(form.nomSpecialiste) }}</span>
+                        <div class="input-control text" data-role="input-control" >
+                        {{ form_widget(form.nomSpecialiste) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                        
+                        {{ form_label(form.telephoneSpecialiste, "Téléphone du spécialiste") }}
+                        <span style="color: red">{{ form_errors(form.telephoneSpecialiste) }}</span>
+                        <div class="input-control text" data-role="input-control" >
+                        {{ form_widget(form.telephoneSpecialiste) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                        
+                        {{ form_label(form.qualificationSpecialiste, "Qualification du spécialiste") }}
+                        <span style="color: red">{{ form_errors(form.qualificationSpecialiste) }}</span>
+                        <div class="input-control text" data-role="input-control" >
+                        {{ form_widget(form.qualificationSpecialiste) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                         
+                        {{ form_label(form.autreInfo, "Autres infos") }}
+                        <span style="color: red">{{ form_errors(form.autreInfo) }}</span>
+                        <div class="input-control textarea" data-role="input-control">
+                        {{ form_widget(form.autreInfo) }}
+                        </div>
+                        
+                        
+                    <div style="margin-top: 0px;">
+                        <button type="submit" class="button large primary">
+                            <i class="icon-checkbox on-left"></i>
+                            Valider
+                        </button>
+                    </div>
+                        
+                </div>   
+             </div> 
+    {{ form_widget(form) }}
+                    
+                    
+
+                </form>
+            </div> 
+        </div> 
+        </div> 
+    </div>            
+
+{%endblock bodycontent%}
+{%endblock body%}

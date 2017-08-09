@@ -1,0 +1,134 @@
+{% extends "DDPUserBundle::layout_utilisateur_simple_register.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{%block title%}{{parent()}} Création de compte {%endblock title%}
+{% block fos_user_content %}
+                <div class="grid fluid">
+                    <div class="row">
+                        <h2 id="__form__">Création de compte <span style="color: #aaa; font-size: 14px">(Les champs marqués du symbol * sont obligatoire)</span></h2>
+                        <div class="example2">
+
+
+<form action="{{ path('ddp_utilisateur_simple_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+    
+                    <fieldset>
+                        <legend>Etat Civil</legend>
+            <div class="row">            
+                <div class="span6">
+                        {{ form_label(form.nom, "Nom *") }}
+                        <span class="erreur-form">{{ form_errors(form.nom) }}</span>
+                        <div class="input-control text" data-role="input-control" data-hint="Entrer votre nom | Cela permettra de donner plus de crédibilité à votre inscription sur le site" data-hint-position="top">
+                        {{ form_widget(form.nom) }}
+                            <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                        
+                        {{ form_label(form.prenom, "Prénom *") }}
+                        <span class="erreur-form">{{ form_errors(form.prenom) }}</span>
+                        <div class="input-control text" data-role="input-control" data-hint="Entrer votre prénom | Cela permettra de donner plus de crédibilité à votre inscription sur le site" dtat-hint-position="top">
+                        {{ form_widget(form.prenom) }}
+                            <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                </div>        
+                <div class="span6">       
+                        {{ form_label(form.lieuNaissance, "Lieu de naissance") }}
+                        <span class="erreur-form">{{ form_errors(form.lieuNaissance) }}</span>
+                        <div class="input-control text" data-role="input-control" data-hint="Entrer votre lieu de naissance | Cela permettra de donner plus de crédibilité à votre inscription sur le site">
+                        {{ form_widget(form.lieuNaissance) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                        
+                        {{ form_label(form.dateNaissance, "Date de Naissance") }}
+                        <span class="erreur-form">{{ form_errors(form.dateNaissance) }}</span>
+                        <div class="input-control text" data-format="yyyy-mm-dd" data-locale='fr' data-role="datepicker" data-effect="slide" data-hint="Entrer votre date de naissance | Cela permettra de donner plus de crédibilité à votre inscription sur le site">
+                        {{ form_widget(form.dateNaissance) }}
+                         <span class="btn-date"></span>
+                        </div>
+                </div>   
+             </div>   
+                    </fieldset>
+    <fieldset>
+              <legend>Contact & Profession</legend>
+                <div class="row">        
+                <div class="span6">        
+                        {{ form_label(form.adresse, "Votre adresse") }}
+                        <span class="erreur-form">{{ form_errors(form.adresse) }}</span>
+                        <div class="input-control text" data-role="input-control" data-hint="Entrer votre adresse | Pour faciliter votre localisation">
+                        {{ form_widget(form.adresse) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                        
+                        {{ form_label(form.email, "Email *") }}
+                        <span class="erreur-form">{{ form_errors(form.email) }}</span>
+                        <div class="input-control text" data-role="input-control" data-hint="Entrer votre email | Très important pour vous contacter. Veuillez mettre un mail valide">
+                        {{ form_widget(form.email) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                </div>        
+                
+               <div class="span6">
+                        {{ form_label(form.telephone, "Téléphone *") }}
+                        <span class="erreur-form">{{ form_errors(form.telephone) }}</span>
+                        <div class="input-control text" data-role="input-control" data-hint="Entrer votre numéro de téléphone | Cela permettra de vous contacter en cas de besoin. Veuillez mettre un numéro de téléphone valide">
+                        {{ form_widget(form.telephone) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                       
+                       {{ form_label(form.fonctionActuelle, "Votre fonction actuelle") }}
+                        <span class="erreur-form">{{ form_errors(form.fonctionActuelle) }}</span>
+                        <div class="input-control text" data-role="input-control" data-hint="Entrer votre fonction | Veuillez notifier ce que vous faites actuellement. Cela permettra de donner plus de crédibilité à votre inscription sur le site">
+                        {{ form_widget(form.fonctionActuelle) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                   </div>   
+               </div>
+    </fieldset>    
+    <fieldset>
+              <legend>Paramètres de compte DDP</legend>
+                <div class="row">        
+                <div class="span6"> 
+                        {{ form_label(form.username, "Nom d'utilisateur *") }}
+                        <span class="erreur-form">{{ form_errors(form.username) }}</span>
+                        <div class="input-control text" data-role="input-control" data-hint="Entrer votre nom d'utilisateur (pseudo)| Cela permettra de vous connecter au site à tout moment">
+                        {{ form_widget(form.username) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                        
+                        {{ form_label(form.plainPassword.first, "Mot de passe *") }}
+                        <span class="erreur-form">{{ form_errors(form.plainPassword.first) }}</span>
+                        <div class="input-control password" data-role="input-control" data-hint="Entrer un mot de passe | C'est la clé de votre compte sur le site. Ne l'oublier pas une fois l'inscription terminer">
+                        {{ form_widget(form.plainPassword.first) }}
+                         <button class="btn-reveal" tabindex="-1" type="button"></button>
+                        </div>                        
+                </div>
+                <div class="span6">         
+                        {{ form_label(form.plainPassword.second, "Resaisir mot de passe *") }}
+                        <span class="erreur-form">{{ form_errors(form.plainPassword.second) }}</span>
+                        <div class="input-control password" data-role="input-control" data-hint="Resaisissez votre mot de passe | Juste pour vérification">
+                        {{ form_widget(form.plainPassword.second) }}
+                         <button class="btn-reveal" tabindex="-1" type="button"></button>
+                        </div>
+                        
+                        {{ form_label(form.photoProfil.file, "Ajouter une photo de vous ") }}
+                        <span class="erreur-form">{{ form_errors(form.photoProfil.file) }}</span>
+                        <div class="input-control file" data-role="input-control" data-hint="Ajouter une photo de vous | Cela permettra de personaliser vos pages une fois connecter au site">
+                        {{ form_widget(form.photoProfil.file) }}
+                        <input type="text" id="__input_file_wrapper__" readonly="" style="z-index: 1; cursor: default;">
+                        <button class="btn-file" type="button"></button>
+                        </div>  
+                </div>
+                </div>
+              </fieldset>
+{{ form_widget(form) }}
+    <div>
+        <span style="color: #aaa">En cliquant sur {{ 'registration.submit'|trans }}, vous indiquez que vous avez lu et acceptez nos </span><a href="{{path('ddp_utilisateur_simple_condition_utilisation')}}">conditions d'utilisation</a>
+    </div>
+            <div style="margin-top: 10px;">
+                <button type="submit" class="button large primary">
+                    <i class="icon-checkbox on-left"></i>
+                    {{ 'registration.submit'|trans }}
+                </button>
+            </div>
+    
+</form>
+                        </div> </div> </div>            
+
+{% endblock fos_user_content %}

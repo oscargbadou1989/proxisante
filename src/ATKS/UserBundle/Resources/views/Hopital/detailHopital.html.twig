@@ -1,0 +1,124 @@
+{%extends "ATKSUserBundle::layout.html.twig"%}
+{%block title%}{{parent()}} {{hopital.nom}}{%endblock title%}
+{%block body%}
+<div class="" style="margin-top: 10px">
+    <div class="container">
+        <div class="main-content clearfix">
+            <div style="width: 49%; border: 1px solid #ccc; float: left">
+                <img src="{%if hopital.image.url != null%}{{image(hopital.image.webPath).resize(557, 300, '000000')}}{%else%}{{image('bundles/atksadmin/images/caducee-pharmacie.jpg').resize(557, 300, '000000')}}{%endif%}"/>
+                <h3>Situation du centre de santé sur une carte</h3>
+                <div id="map" style="height: 300px">
+
+                </div>
+            </div>
+            <div style="width: 49%; border: 1px solid #ccc; float: right">
+                <div style="margin: 10px; font-weight: bold; font-size: 25px">
+                    {{hopital.nom}}
+                    </div>
+                {%if hopital.adresse%}
+                    <div style="margin: 10px">
+                        Adresse: {{hopital.adresse}}
+                    </div>
+                {%endif%}
+                {%if hopital.telephone%}
+                    <div style="margin: 10px">
+                        Téléphone: {{hopital.telephone}}
+                    </div>
+                {%endif%}
+                {%if hopital.fax%}
+                    <div style="margin: 10px">
+                        Fax: {{hopital.fax}}
+                    </div>
+                {%endif%}
+                {%if hopital.email%}
+                    <div style="margin: 10px">
+                        Email: <a href="mailto:{{hopital.email}}">{{hopital.email}}</a>
+                    </div>
+                {%endif%}
+                {%if hopital.siteWeb%}
+                    <div style="margin: 10px">
+                        Site web: <a herf="http://{{hopital.siteWeb}}">{{hopital.siteWeb}}</a>
+                    </div>
+                {%endif%}
+                    <div style="margin: 10px">
+                        Horaire d'ouverture: {{hopital.heureOuverture|date('H')}}h - {{hopital.heureFermeture|date('H')}}h
+                    </div>
+                    <span style="font-size: 14px; color: #c29008; margin-left: 10px">Vous pouvez aussi noter cet hôpital:</span> <div style="margin-left: 10px" id="rating_2" class="meduim-size fg-green"></div>
+                    
+                    <div style="margin: 10px; font-weight: bold; font-size: 25px">
+                        Services de santé
+                    </div>
+                    <div class="listview-outlook" data-role="listview" style="margin: 10px">
+                    {%for hs in hopitalService%}
+                            <a href="#" class="list marked">
+                                <div class="list-content">
+                                    <span class="list-title">{{hs.service.nom}}</span>
+                                    <span class="list-subtitle">{%if hs.nomSpecialiste%}{{hs.nomSpecialiste}} ({{hs.qualificationSpecialiste}}{%if hs.telephoneSpecialiste%}:{{hs.telephoneSpecialiste}}{%endif%}){%endif%}</span>
+                                    <span class="list-subtitle">{%if hs.fraisPrestation%}{{hs.fraisPrestation}} {%endif%}</span>
+                                    <span class="list-remark">{{hs.service.description}}</span>
+                                </div>
+                            </a>
+                    {%endfor%}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+{%endblock body%}
+{%block javascripts%}
+{{parent()}}
+        <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script>
+                                if (navigator.geolocation) {
+                        function succesGeo(position) {
+                        var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                                var latlngSante = new google.maps.LatLng({{hopital.latitude}}, {{hopital.longitude}});
+                                var optionsGmaps = {
+                        mapTypeControl: false,
+                                center: latlngSante,
+                                navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+                                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                                zoom: 12
+                        };
+                                var map = new google.maps.Map(document.getElementById("map"), optionsGmaps);
+                                var imageMarkerUser = {
+                        url: '{{asset('bundles/atksuser/images/map-marker-user2.png')}}',
+                                size: new google.maps.Size(29, 51),
+                                origin: new google.maps.Point(0, 0),
+                                anchor: new google.maps.Point(0, 20)
+                        };
+                                var marker = new google.maps.Marker({
+                        position: latlng,
+                                map: map,
+                                title: "Vous êtes ici",
+                                icon: imageMarkerUser
+                        });
+                                var imageMarkerSante = {
+                        url: '{{asset('bundles/atksuser/images/map-marker-sante2.png')}}',
+                                size: new google.maps.Size(29, 51),
+                                origin: new google.maps.Point(0, 0),
+                                anchor: new google.maps.Point(0, 20)
+                        };
+                                var marker{{hopital.id}} = new google.maps.Marker({
+                        position: new google.maps.LatLng({{hopital.latitude}}, {{hopital.longitude}}),
+                                map: map,
+                                title: "{{hopital.nom}}",
+                                icon: imageMarkerSante
+                        });
+                        }
+                        navigator.geolocation.getCurrentPosition(succesGeo);
+                        }
+            </script>
+            <script>
+                        $(function(){
+                        $("#rating_1").rating({
+                                static: false,
+                                score: 2,
+                                stars: 5,
+                                showHint: true,
+                                hints: ['bad', 'poor', 'regular', 'good', 'gorgeous'],
+                        });
+                      });                        </script>
+{%endblock javascripts%}

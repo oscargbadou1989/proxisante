@@ -1,0 +1,222 @@
+<?php
+
+namespace ATKS\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * FbInterrogatoire
+ *
+ * @ORM\Table(name="fb_interrogatoire")
+ * @ORM\Entity(repositoryClass="ATKS\AdminBundle\Repository\FbInterrogatoireRepository")
+ */
+class FbInterrogatoire
+{
+  /**
+   * @ORM\ManyToOne(targetEntity="ATKS\AdminBundle\Entity\FbUser")
+   */
+  private $fbUser;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="plainte", type="string", length=255, nullable=true)
+     */
+    private $plainte;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="debut", type="string", length=255, nullable=true)
+     */
+    private $debut;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="detail", type="string", length=255, nullable=true)
+     */
+    private $detail;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="closed", type="boolean")
+     */
+    private $closed;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    public function __construct(){
+      $this->date = new \DateTime();
+      $this->closed = false;
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set plainte
+     *
+     * @param string $plainte
+     *
+     * @return FbInterrogatoire
+     */
+    public function setPlainte($plainte)
+    {
+        $this->plainte = $plainte;
+
+        return $this;
+    }
+
+    /**
+     * Get plainte
+     *
+     * @return string
+     */
+    public function getPlainte()
+    {
+        return $this->plainte;
+    }
+
+    /**
+     * Set closed
+     *
+     * @param boolean $closed
+     *
+     * @return FbInterrogatoire
+     */
+    public function setClosed($closed)
+    {
+        $this->closed = $closed;
+
+        return $this;
+    }
+
+    /**
+     * Get closed
+     *
+     * @return bool
+     */
+    public function getClosed()
+    {
+        return $this->closed;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return FbInterrogatoire
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set fbUser
+     *
+     * @param \ATKS\AdminBundle\Entity\FbUser $fbUser
+     *
+     * @return FbInterrogatoire
+     */
+    public function setFbUser(\ATKS\AdminBundle\Entity\FbUser $fbUser = null)
+    {
+        $this->fbUser = $fbUser;
+
+        return $this;
+    }
+
+    /**
+     * Get fbUser
+     *
+     * @return \ATKS\AdminBundle\Entity\FbUser
+     */
+    public function getFbUser()
+    {
+        return $this->fbUser;
+    }
+
+    /**
+     * Set debut
+     *
+     * @param string $debut
+     *
+     * @return FbInterrogatoire
+     */
+    public function setDebut($debut)
+    {
+        $this->debut = $debut;
+
+        return $this;
+    }
+
+    /**
+     * Get debut
+     *
+     * @return string
+     */
+    public function getDebut()
+    {
+        return $this->debut;
+    }
+
+    /**
+     * Set detail
+     *
+     * @param string $detail
+     *
+     * @return FbInterrogatoire
+     */
+    public function setDetail($detail)
+    {
+        $this->detail = $detail;
+
+        return $this;
+    }
+
+    /**
+     * Get detail
+     *
+     * @return string
+     */
+    public function getDetail()
+    {
+        return $this->detail;
+    }
+}

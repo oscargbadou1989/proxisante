@@ -1,0 +1,81 @@
+{%extends "::base2.html.twig"%}
+{%block title%}{{parent()}} {%endblock title%}
+{%block header%}
+<div class="header-layout">
+    <header class="">
+        <div class="container">
+            <div class="grid">
+                <div class="row">
+                    <div class="span4">
+                        <a class="" href="{{path('atks_user_accueil')}}" title="">
+                            <h1><span style="color: white; text-shadow: 1px 0 0 black, -1px 0 0 black, 0 1px 0 black, 0 -1px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;">Proxi</span><span style="color: green">Santé</span></h1>
+                        </a>
+                    </div>
+                    <div class="span4">
+                        <a class="command-button bg-orange fg-white" href="https://drive.google.com/file/d/0B84vM4PuX5OLVnp3eWZmSlFrV0E/edit?usp=sharing" style="margin: 25px" target="_blank">
+                            <i class="icon-download-2 on-left"></i>
+                            Version Android
+                            <small style="font-size: 10px">Télécharger la version Android</small>
+                        </a>
+                    </div>
+                    <div class="span4">
+                            <form method="post" action="{{path('atks_user_recherche_service_sante')}}">
+                                <div class="input-control text size5 nrm" style="margin-top: 25px">
+                                    <input required="true" type="text" name="query" placeholder="Rechercher un service de santé...">
+                                    <input type="text" name="lat" style="display: none" id="input-lat">
+                                    <input type="text" name="lon" style="display: none" id="input-lon">
+                                    <input type="text" name="rayon" style="display: none" id="input-rayon">
+                                    <button class="btn-search" type="submit"></button>
+                                </div>
+                            </form>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="span12 main-menu-wrapper">
+                        <ul class="horizontal-menu nlm">
+                            <li><a class="element-link" href="{{path('atks_user_list_hopital_plus_proche')}}" title="Les hôpitaux les plus proche de moi">Hôpitaux</a></li>
+                            <li><a class="element-link" href="{{path('atks_user_list_pharmacie_plus_proche')}}" title="Les pharmacies les plus proche de moi">Pharmacies</a></li>
+                            <li><a href="#" id="serviceSante" title="Les services de santé">Service de santé</a></li>
+                            <li><a href="{{path('atks_user_psm_accueil')}}" title="La version mobile de proxi santé">ProxiSanté Mobile</a></li>
+                            <li class="">
+                                <a href="#" class="dropdown-toggle"><span class="icon-cog fg-gray"> </span></a>
+                                <ul class="dropdown-menu place-right" data-role="dropdown">
+                                    <li><a href="#" id="reglageRayonRecherce">Rayon de recherche</a></li>
+                                    <li><a href="#" id="createWindowDraggable">Soumettre un problème</a></li>
+                                    <li><a href="#">A propos</a></li>
+                                    <li><a href="#">Partager</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+{%endblock header%}
+{% block body %}
+            {% for type, messages in app.session.flashbag.all() %}
+                            {% for message in messages %}
+<div class="flash-{{ type }}">
+    <div class="grid fluid">
+        <div class="row">
+            <div class="span12">
+                                                {%if type=="success"%}
+                    <div class="notice marker-on-bottom bg-green fg-white">
+                        <p style="text-align: center">{{ message }}</p>
+                    </div>
+                                                {%else%}
+                    <div class="notice marker-on-bottom bg-red fg-white">
+                        <p style="text-align: center">{{ message }}</p>
+                    </div>
+                                                {%endif%}
+                </div>
+            </div>
+        </div>
+
+    </div>
+                            {% endfor %}
+                            {% endfor %}
+{% endblock body %}

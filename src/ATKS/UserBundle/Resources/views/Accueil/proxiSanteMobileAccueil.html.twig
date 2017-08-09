@@ -1,0 +1,209 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Proxi Santé | Version mobile</title>
+        <link href="{{asset('bundles/atksuser/psm/css/style.css')}}" rel='stylesheet' type='text/css' />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Application vous permettant d'avoir un accès facile à l'information sanitaire autour de vous. Les centres de santé qui disposent d'un service de santé particulier tout proche de vous">
+        <meta name="keywords" content="Bénin santé, 229 santé, proximité santé, proxisante, 229 hopital, 229 pharmacie, 229 secours, 229 service de santé,">
+        <meta name="author" content="Oscar GBADOU">
+        <link rel="shortcut icon" type="image/x-icon" href="{{asset('bundles/atksadmin/images/favicon.ico')}}"> 
+        <script type="application/x-javascript"> 
+            addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+        </script>
+    </script>
+    <!----webfonts---->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!----//webfonts---->
+    <!-- Owl Carousel Assets -->
+    <link href="{{asset('bundles/atksuser/psm/css/owl.carousel.css')}}" rel="stylesheet">
+    <script src="{{asset('bundles/atksuser/psm/js/jquery-1.9.1.min.js')}}"></script> 
+    <!-- Owl Carousel Assets -->
+    <!-- Prettify -->
+    <script src="{{asset('bundles/atksuser/psm/js/owl.carousel.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+
+            $("#owl-demo").owlCarousel({
+                items: 4,
+                lazyLoad: true,
+                autoPlay: true,
+                navigation: true,
+                navigationText: ["", ""],
+                rewindNav: false,
+                scrollPerPage: false,
+                pagination: false,
+                paginationNumbers: false,
+            });
+
+        });
+        </script>
+        <!-- //Owl Carousel Assets -->
+        <!-- Add fancyBox light-box -->
+        <script src="{{asset('bundles/atksuser/psm/js/jquery.magnific-popup.js')}}" type="text/javascript"></script>
+        <link href="{{asset('bundles/atksuser/psm/css/magnific-popup.css')}}" rel="stylesheet" type="text/css">
+        <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+    });
+            </script>
+            <!-- //End fancyBox light-box -->
+        </head>
+        <body>
+            <!----start-wrap---->
+            <!----start-header----->
+            <div class="header">
+                <div class="wrap">
+                    <div class="header-left">
+                        <span> </span>
+                    </div>
+                    <div class="header-right">
+                        <span  onclick="location.href = 'index.html';"> </span>
+                        <a class="logo" href="#"> <img src="{{asset('bundles/atksuser/psm/images/logo-site2.PNG')}}" title="ProxiSanté" /></a>
+                        <p>L'information sanitaire autour de vous</p>
+                        <a class="bigbtn" href="https://drive.google.com/file/d/0B84vM4PuX5OLVnp3eWZmSlFrV0E/edit?usp=sharing" target="_blank"> Télécharger</a>
+                       <!-- <a class="bigbtn popup-with-zoom-anim" href="#small-dialog" href="#"> Télécharger</a>-->
+                    </div>
+                    <div class="clear"> </div>
+                </div>
+            </div>
+            <!----//End-header----->
+            <!---pop-light-box--->
+            <!-----pop-up-grid---->
+            <div id="small-dialog" class="mfp-hide">
+                <div class="pop_up">
+                    <h3>Disponible sur!</h3>
+                    <p>ProxiSanté est disponible sur Android et sur Windows Phone</p>
+                    <ul>
+                        <li><a class="iphone" href="#"> </a></li>
+                        <li><a class="google" href="#"> </a></li>-->
+                    </ul>
+                </div>
+            </div>
+            <!-----pop-up-grid---->
+            <!---//pop-light-box--->
+            <!--start-content--->
+            <div class="content">
+                <div class="wrap">
+                    <!----start-img-cursual---->
+                    <!-- start content_slider -->
+                    <div id="owl-demo" class="owl-carousel">
+                        <div class="item" onclick="location.href = 'accueil';">
+                            <img class="lazyOwl" data-src="{{asset('bundles/atksuser/psm/images/c1.PNG')}}" alt="Lazy Owl Image">
+                            <a href="#"><span>ProxiSanté</span> Hopitaux</a>
+                            <p>Les hôpitaux les plus proches de vous dans un rayon bien déterminé</p>
+                        </div>
+                        <div class="item" onclick="location.href = 'accueil';">
+                            <img class="lazyOwl" data-src="{{asset('bundles/atksuser/psm/images/c3.PNG')}}" alt="Lazy Owl Image">
+                            <a href="#">Google Maps</a>
+                            <p>Les hôpitaux les plus proches de vous sous fond cartographique</p>
+                        </div>
+                        <div class="item" onclick="location.href = 'accueil';">
+                            <img class="lazyOwl" data-src="{{asset('bundles/atksuser/psm/images/c4.PNG')}}" alt="Lazy Owl Image">
+                            <a href="#"><span>Détails</span></a>
+                            <p>Services de santé, Informations utiles, Localisation</p>
+                        </div>
+                        <div class="item" onclick="location.href = 'accueil';">
+                            <img class="lazyOwl" data-src="{{asset('bundles/atksuser/psm/images/c5.PNG')}}" alt="Lazy Owl Image">
+                            <a href="#"><span>ProxiSanté</span> Pharmacies</a>
+                            <p>Les pharmcies les plus proches de vous dans un rayon bien déterminé</p>
+                        </div>
+                        <div class="item" onclick="location.href = 'accueil';">
+                            <img class="lazyOwl" data-src="{{asset('bundles/atksuser/psm/images/c6.PNG')}}" alt="Lazy Owl Image">
+                            <a href="#"><span>Détails</span></a>
+                            <p>Spécialités, infos utiles, localisation</p>
+                        </div>
+                        <div class="item" onclick="location.href = 'accueil';">
+                            <img class="lazyOwl" data-src="{{asset('bundles/atksuser/psm/images/c7.PNG')}}" alt="Lazy Owl Image">
+                            <a href="#"><span>Favoris</span></a>
+                            <p>Voir les hôpitaux et pharmacies hors connexion</p>
+                        </div>
+                        <div class="item" onclick="location.href = 'accueil';">
+                            <img class="lazyOwl" data-src="{{asset('bundles/atksuser/psm/images/c8.PNG')}}" alt="Lazy Owl Image">
+                            <a href="#"><span>Secours</span> Urgences</a>
+                            <p>Ajouter des contacts des personnes à contacter en cas d'urgence</p>
+                        </div>
+                        <div class="item" onclick="location.href = 'accueil';">
+                            <img class="lazyOwl" data-src="{{asset('bundles/atksuser/psm/images/c9.PNG')}}" alt="Lazy Owl Image">
+                            <a href="#"><span>Recherche</span> textuelle</a>
+                            <p>Rechercher un service de santé ou une spécialité de pharmacie</p>
+                        </div>
+                        <div class="item" onclick="location.href = 'accueil';">
+                            <img class="lazyOwl" data-src="{{asset('bundles/atksuser/psm/images/c10.PNG')}}" alt="Lazy Owl Image">
+                            <a href="#"><span>Recherche</span> Vocale</a>
+                            <p>Rechercher un service de santé ou une spécialité de pharmacie</p>
+                        </div>
+                        
+                    </div>
+                    <!----//End-img-cursual---->
+                    <!---start-get-download-link---->
+                    <div class="get-download">
+                        <p>Obtenez gratuitement ProxiSanté <!--<a class="downloadbtn popup-with-zoom-anim" href="#small-dialog" href="#">Télécharger</a>--><a class="bigbtn" href="https://drive.google.com/file/d/0B84vM4PuX5OLVnp3eWZmSlFrV0E/edit?usp=sharing" target="_blank"> Télécharger</a> ou bénéficier des mêmes service sur son site <a style="color: #2da331" href="{{path('atks_user_accueil')}}">www.229proxisante.com</a>
+                    </div>
+                    <!---//End-get-download-link---->
+                    <!----start-divice-features---->
+                    <div class="divice-fea">
+                        <div class="divice-fea-left">
+                            <label> </label>
+                            <div class="divice-fea-left-grid">
+                                <h3><span>Hôpitaux</span> Plus proche</h3>
+                                <p>Les hôpitaux les plus proche de vous dans un rayon bien déterminé. On vous fourni aussi la distance qui vous sépare de chaque hopital</p>
+                            </div>
+                            <div class="divice-fea-left-grid">
+                                 <h3><span>Pharmacie</span> Plus proche</h3>
+                                <p>Les pharmacies les plus proche de vous dans un rayon bien déterminé. On vous fourni aussi la distance qui vous sépare de chaque pharmacie</p>
+                            </div>
+                            <div class="divice-fea-left-grid">
+                                <h3><span>Hôpitaux et Pharmacies</span> Sous fond cartographique</h3>
+                                <p>Pour les habitués de google maps, vous verrez aussi les hôpitaux et les pharmacies sur une carte google maps</p>
+                            </div>
+                            <div class="divice-fea-left-grid">
+                                <h3><span>Secours</span> Urgence</h3>
+                                <p>Vous avez aussi la possibilité d'appeler en un clic les secours: sapeurs pompiers, police, SAMU, etc.</p>
+                            </div>
+                            <div class="divice-fea-left-grid">
+                                <h3><span>Favoris</span> Mode hors connexion</h3>
+                                <p>Ajouter des hôpitaux et des pharmacies aux favoris pour les consulter hors connexion</p>
+                            </div>
+                            <div class="divice-fea-left-grid">
+                                <h3><span>Recherche</span> Service de santé</h3>
+                                <p>Vous pouvez rechercher (textuelle et vocale) les centres de santé qui disposent d'un service de santé particulier</p>
+                            </div>
+                        </div>
+                        <div class="divice-fea-right">
+                            <span> </span>
+                        </div>
+                        <div class="clear"> </div>
+                    </div>
+                    <!----//End-divice-features---->
+                    <!---start-footer---->
+                    <div class="footer">
+                        <div class="footer-left">
+                            <p>&#169; 2014 <span style="color: #2da331">PROXI SANTE.</span></p>
+                        </div>
+                        <div class="clear"> </div>
+                    </div>
+                    <!---//End-footer---->
+                </div>
+            </div>
+            <!--//End-content--->
+            <!----//End-wrap---->
+        </body>
+    </html>
+

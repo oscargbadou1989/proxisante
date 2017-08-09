@@ -1,0 +1,63 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_PHARMACIEN:       ROLE_USER
+        ROLE_ADMIN: [ROLE_PHARMACIEN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        admin:
+            pattern: ^/admin
+            form_login:
+                check_path:   /admin/login_check
+                login_path:   /admin/login
+                default_target_path:  /admin
+                provider:   fos_userbundle
+            logout:
+                path:   /admin/logout
+                target:   /admin/login
+            anonymous:      true
+            remember_me:
+                key:          %secret%
+
+        pharmacien:
+            pattern: ^/pharmacie
+            form_login:
+                check_path:   /pharmacie/login_check
+                login_path:   /pharmacie/login
+                default_target_path:  /pharmacie/accueil
+                provider:   fos_userbundle
+            logout:
+                path:   /pharmacie/logout
+                target:   /pharmacie/login
+            anonymous:      true
+            remember_me:
+                key:          %secret%
+
+        main:
+            pattern: ^/
+            form_login:
+                provider:     fos_userbundle
+                remember_me:  true
+                check_path:   /login_check
+                login_path:   /login
+                default_target_path:  /accueil
+            remember_me:
+                key:          %secret%
+            logout:
+                path:   /logout
+                target:   /accueil
+            anonymous:        true
+
+    access_control:
+        - { path: ^/admin/(login|register/.+|resetting), roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/pharmacie/(login|register|resetting), roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/pharmacie, roles: ROLE_PHARMACIEN }
+        - { path: ^/pharmacie/register, roles: ROLE_ADMIN }
+        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

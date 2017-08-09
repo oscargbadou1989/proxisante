@@ -1,0 +1,75 @@
+atks_admin_service_hopitaux_les_plus_proche:
+    pattern: /hopitaux/proche
+    defaults: { _controller: ATKSAdminBundle:Service:hopitauxLesPlusProche }
+
+atks_admin_service_pharmacies_les_plus_proche:
+    pattern: /pharmacies/proche
+    defaults: { _controller: ATKSAdminBundle:Service:pharmaciesLesPlusProche }
+
+atks_admin_service_detail_hopital:
+    pattern: /detail/hopital
+    defaults: { _controller: ATKSAdminBundle:Service:detailHopital }
+
+atks_admin_service_detail_pharmacie:
+    pattern: /detail/pharmacie
+    defaults: { _controller: ATKSAdminBundle:Service:detailPharmacie }
+
+atks_admin_service_detail_service_sante:
+    pattern: /detail/service
+    defaults: { _controller: ATKSAdminBundle:Service:detailServiceSante }
+
+atks_admin_service_recherche:
+    pattern: /recherche
+    defaults: { _controller: ATKSAdminBundle:Service:recherche }
+
+atks_admin_service_services:
+    pattern: /services
+    defaults: { _controller: ATKSAdminBundle:Service:services }
+
+atks_admin_service_soumission_probleme:
+    pattern: /soumission/probleme
+    defaults: { _controller: ATKSAdminBundle:Service:soumissionProbleme }
+
+atks_admin_service_connexion:
+    pattern: /connexion
+    defaults: { _controller: ATKSAdminBundle:Service:connexion }
+
+atks_admin_service_publicite:
+    pattern: /publicite
+    defaults: { _controller: ATKSAdminBundle:Service:publicite }
+
+atks_admin_service_add_fb_user:
+    pattern: /addfbuser
+    defaults: { _controller: ATKSAdminBundle:Service:addFbUser }
+
+atks_admin_service_add_fb_user_msg:
+    pattern: /addfbusermsg
+    defaults: { _controller: ATKSAdminBundle:Service:addFbUserMsg }
+
+atks_admin_service_init_interrogatoire:
+    pattern: /initinterrogatoire
+    defaults: { _controller: ATKSAdminBundle:Service:initInterrogatoire }
+
+atks_admin_service_add_fb_ask:
+    pattern: /addfbask
+    defaults: { _controller: ATKSAdminBundle:Service:addFbUserQuestion }
+
+atks_admin_service_get_last_question:
+    pattern: /lastquestion
+    defaults: { _controller: ATKSAdminBundle:Service:getLastQuestion }
+
+atks_admin_service_saveinterrogatoire:
+    pattern: /saveinterrogatoire
+    defaults: { _controller: ATKSAdminBundle:Service:saveInterrogatoire }
+
+atks_admin_service_orientation:
+    pattern: /orientation
+    defaults: { _controller: ATKSAdminBundle:Service:getOrientation }
+
+atks_admin_service_specialite_orientation:
+    pattern: /specorientation
+    defaults: { _controller: ATKSAdminBundle:Service:getSpecialiteOrientation }
+
+atks_admin_test_search:
+    pattern: /testsearch
+    defaults: { _controller: ATKSAdminBundle:Service:testSearch }

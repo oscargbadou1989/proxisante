@@ -1,0 +1,104 @@
+<?php
+
+namespace ATKS\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PharmacieProduit
+ *
+ * @ORM\Table(name="atks_pharmacie_produit")
+ * @ORM\Entity(repositoryClass="ATKS\AdminBundle\Entity\PharmacieProduitRepository")
+ */
+class PharmacieProduit
+{
+    /**
+     * @ORM\ManyToOne(targetEntity="ATKS\AdminBundle\Entity\Pharmacie")
+     */
+    private $pharmacie;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="ATKS\AdminBundle\Entity\Produit")
+     */
+    private $produit;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="prix", type="integer")
+     */
+    private $prix;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="unite", type="string", length=255)
+     */
+    private $unite;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set prix
+     *
+     * @param integer $prix
+     * @return PharmacieProduit
+     */
+    public function setPrix($prix)
+    {
+        $this->prix = $prix;
+    
+        return $this;
+    }
+
+    /**
+     * Get prix
+     *
+     * @return integer 
+     */
+    public function getPrix()
+    {
+        return $this->prix;
+    }
+
+    /**
+     * Set unite
+     *
+     * @param string $unite
+     * @return PharmacieProduit
+     */
+    public function setUnite($unite)
+    {
+        $this->unite = $unite;
+    
+        return $this;
+    }
+
+    /**
+     * Get unite
+     *
+     * @return string 
+     */
+    public function getUnite()
+    {
+        return $this->unite;
+    }
+}

@@ -1,0 +1,129 @@
+<?php
+
+namespace ATKS\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Commande
+ *
+ * @ORM\Table(name="atks_commande")
+ * @ORM\Entity(repositoryClass="ATKS\AdminBundle\Entity\CommandeRepository")
+ */
+class Commande
+{
+    /**
+     * @ORM\OneToMany(targetEntity="ATKS\AdminBundle\Entity\DetailCommande", mappedBy="commande", cascade={"persist","remove"})
+     */
+    private $detailCommandes;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="montantFacture", type="integer")
+     */
+    private $montantFacture;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="valider", type="boolean")
+     */
+    private $valider;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="livrer", type="boolean")
+     */
+    private $livrer;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set montantFacture
+     *
+     * @param integer $montantFacture
+     * @return Commande
+     */
+    public function setMontantFacture($montantFacture)
+    {
+        $this->montantFacture = $montantFacture;
+    
+        return $this;
+    }
+
+    /**
+     * Get montantFacture
+     *
+     * @return integer 
+     */
+    public function getMontantFacture()
+    {
+        return $this->montantFacture;
+    }
+
+    /**
+     * Set valider
+     *
+     * @param boolean $valider
+     * @return Commande
+     */
+    public function setValider($valider)
+    {
+        $this->valider = $valider;
+    
+        return $this;
+    }
+
+    /**
+     * Get valider
+     *
+     * @return boolean 
+     */
+    public function getValider()
+    {
+        return $this->valider;
+    }
+
+    /**
+     * Set livrer
+     *
+     * @param boolean $livrer
+     * @return Commande
+     */
+    public function setLivrer($livrer)
+    {
+        $this->livrer = $livrer;
+    
+        return $this;
+    }
+
+    /**
+     * Get livrer
+     *
+     * @return boolean 
+     */
+    public function getLivrer()
+    {
+        return $this->livrer;
+    }
+}

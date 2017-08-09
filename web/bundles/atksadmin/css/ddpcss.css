@@ -1,0 +1,64 @@
+root { 
+    display: block;
+}
+.bg-lightRed{
+    background: lightcoral;
+}
+.metro .input-control.textarea textarea {
+    min-height: 50px;
+}
+.metro .example2 {
+    padding: 20px 40px 20px 60px;
+    border: 1px #ccc solid;
+    position: relative;
+    margin: 0 0 10px 0;
+    background-color: #fdfdfd !important;
+    min-height: 100px;
+}
+.metro .grid .row {
+    margin-top: 0px;
+}
+.metro .grid {
+    margin-bottom: 5px;
+}
+.metro .alaune .grid .row [class*="span"] {
+    margin-left: 0px; 
+}
+.metro .alaune .grid.fluid .row [class*="span"] {
+    margin-left: 8px;
+}
+.metro .tile_entete .tile {
+    margin: 0 0px 10px 0;
+}
+.metro .tile .brand .badge, .metro .tile .tile-status .badge {
+    right: 0px;
+    width: auto;
+}
+footer{
+    margin-top: 10px;
+}
+.metro .erreur-form ul,  .metro .erreur-form ol {
+    color: red;
+}
+.container {
+    width: 1040px;
+}
+.header-layout{
+    background: #F0F0F0;
+    /*height: 150px;*/
+    border-bottom: 5px solid green;
+}
+.border-bottom-slider{
+    border-top: 5px solid green;
+}
+.slider-layout-2{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.after-slider{
+    background: #F0F0F0;
+}
+.metro .listview .list {
+    width: 100%;
+    height: 150px;
+}

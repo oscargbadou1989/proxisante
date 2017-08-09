@@ -1,0 +1,46 @@
+{%extends "ATKSAdminBundle::layout.html.twig"%}
+{%block title%}{{parent()}} Ajout d'une spécialité à une pharmacie{%endblock title%}
+{%block body%}
+{{parent()}}
+{%block bodycontent%}
+<div class="grid fluid">
+    <div class="row">
+    <div class="span6">
+        <h2 id="__form__">Ajout d'une spécialité à une pharmacie</h2>
+        <div class="example2" style="padding: 10px">
+            <form action="" {{ form_enctype(form) }} method="POST">
+                <div class="row">            
+                <div class="span6">
+                        {{ form_label(form.pharmacie, "Choisir une pharmacie") }}
+                        <span style="color: red">{{ form_errors(form.pharmacie) }}</span>
+                        <div class="input-control select">
+                        {{ form_widget(form.pharmacie) }}
+                        </div>
+                        
+                        {{ form_label(form.specialite, "Choisir une spécialité") }}
+                        <span style="color: red">{{ form_errors(form.specialite) }}</span>
+                        <div class="input-control select">
+                        {{ form_widget(form.specialite) }}
+                        </div>
+                        
+                        <div style="margin-top: 0px;">
+                        <button type="submit" class="button large primary">
+                            <i class="icon-checkbox on-left"></i>
+                            Valider
+                        </button>
+                    </div>
+                        
+                </div>    
+             </div> 
+    {{ form_widget(form) }}
+                    
+                    
+
+                </form>
+            </div> 
+        </div> 
+        </div> 
+    </div>            
+
+{%endblock bodycontent%}
+{%endblock body%}

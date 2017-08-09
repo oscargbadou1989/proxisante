@@ -1,0 +1,53 @@
+{%extends "ATKSAdminBundle::layout.html.twig"%}
+{%block title%}{{parent()}} Fb Message{%endblock title%}
+{% block body %}
+<div class="grid fluid">
+  <div class="row">
+    <h2 id="__form__">Fb Message</h2>
+    <div class="example2" style="padding: 10px">
+      <table class="table striped hovered dataTable" id="dataTables-1">
+        <thead>
+          <tr>
+            <th class="text-left" style="">Fb User</th>
+            <th class="text-left" style="">Message</th>
+            <th class="text-left" style="">Date</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {%for m in messages %}
+          <tr>
+            <td>{% if m.fbUser %}{{m.fbUser.firstname}} {{m.fbUser.lastname}}{% endif %}</td>
+            <td>{{m.message}}</td>
+            <td>{{m.date|date('d-m-Y H:i:s')}}</td>
+          </tr>
+          {%endfor%}
+        </tbody>
+      </table>
+      {% if messages|length>0 %}
+      <div class="pagination" style="margin-top: 20px">
+        <ul>
+          <li class="first"><a {%if page==1%}class="disabled" {%endif%} href="{{path('atks_admin_list_hopital', {'page': 1})}}"><i class="icon-first-2"></i></a></li>
+          <li class="prev"><a {%if page-1<1%}class="disabled" {%endif%} href="{{path('atks_admin_list_hopital', {'page': page-1})}}"><i class="icon-previous"></i></a></li>
+          {%for i in 1..nbrTotalPages%}
+          <li><a href="{{path('atks_admin_list_hopital', {'page': i})}}" {%if page==i%}class="disabled" {%endif%}>{{i}}</a></li>
+          {%endfor%}
+          <li class="next"><a {%if page+1>nbrTotalPages%}class="disabled" {%endif%} href="{{path('atks_admin_list_hopital', {'page': page+1})}}"><i class="icon-next"></i></a></li>
+          <li class="last"><a {%if page==nbrTotalPages%}class="disabled" {%endif%} href="{{path('atks_admin_list_hopital', {'page': nbrTotalPages})}}"><i class="icon-last-2"></i></a></li>
+        </ul>
+      </div>
+      {%endif%}
+    </div>
+  </div>
+</div>
+{% endblock body %}
+{% block javascripts %}
+{{parent()}}
+<script>
+$(function() {
+  $('#dataTables-1').dataTable({
+    "bProcessing": true,
+  });
+});
+</script>
+{% endblock javascripts %}

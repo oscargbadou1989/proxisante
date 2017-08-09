@@ -1,0 +1,83 @@
+{%extends "ATKSAdminBundle::layout.html.twig"%}
+{%block title%}{{parent()}} Les hôpitaux disposant d'un service de {{service.nom}}{%endblock title%}
+{% block body %}
+{{parent()}}
+
+<div class="grid fluid">
+    <div class="row">
+        <h2 id="__form__">Les hôpitaux disposant d'un service de {{service.nom}}</h2>
+        <div class="example2" style="padding: 10px">
+            <table class="table striped hovered dataTable" id="dataTables-1">
+                <thead>
+                    <tr>
+                        <th class="text-left" style="width: 10%">Image</th>
+                            <th class="text-left" style="width: 20%">Nom</th>
+                            <th class="text-left" style="width: 5%">Type</th>
+                            <th class="text-left" style="width: 20%">Adresse</th>
+                            <th class="text-left" style="width: 20%">Contact</th>
+                            <th class="text-left" style="width: 10%">Coord. géo.</th>
+                            <th class="text-left" style="width: 15%">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {%for hs in hopitalService%}
+                        <tr>
+                            <td>
+                                {%if hs.hopital.image%}
+                                    <img src="{{asset(hs.hopital.image.webPath)}}" style="width: 60px; height: 60px"/>
+                                {%else%}
+                                <img src="{{asset('bundles/atksadmin/images/caducee-pharmacie.jpg')}}" style="width: 60px; height: 60px"/>
+                                {%endif%}
+                            </td>
+                            <td>{{hs.hopital.nom}}</td>
+                            <td>{{hs.hopital.type}}</td>
+                            <td>{{hs.hopital.adresse}}</td>
+                            <td>
+                                {%if hs.hopital.telephone%}Tél: {{hs.hopital.telephone}}<br/>{%endif%}
+                                {%if hs.hopital.fax%}Fax: {{hs.hopital.fax}}<br/>{%endif%}
+                                {%if hs.hopital.email%}Email: <a href="mailto:{{hs.hopital.email}}">{{hs.hopital.email}}</a><br/>{%endif%}
+                                {%if hs.hopital.siteWeb%}Site web: <a href="http://{{hs.hopital.siteWeb}}">{{hs.hopital.siteWeb}}</a>{%endif%}
+                            </td>
+                            <td> 
+                                Lat: {{hs.hopital.latitude}}<br/>
+                                Lon: {{hs.hopital.longitude}}<br/>
+                                Alt: {{hs.hopital.altitude}}
+                            </td>
+                            <td>
+                                <div class="toolbar" style="float: right">
+                                    <a class="button js-show-all-streams" title="Voir les services de santé de cet hopital" data-role="" href="{{path('atks_admin_voir_hopital_service', {'id':hs.hopital.id})}}"><span class="icon-eye"></span></a>
+                                    <a href="{{path('atks_admin_modifier_hopital', {'id':hs.hopital.id})}}" class="button js-show-all-streams" title="Modifier" data-role=""><span class="icon-pencil"></span></a>
+                                    <a href="{{path('atks_admin_supprimer_hopital', {'id':hs.hopital.id})}}" class="button js-show-all-streams" title="Supprimer" data-role=""><span class="icon-remove"></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                    {%endfor%}
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th class="text-left" style="width: 10%">Image</th>
+                            <th class="text-left" style="width: 20%">Nom</th>
+                            <th class="text-left" style="width: 5%">Type</th>
+                            <th class="text-left" style="width: 20%">Adresse</th>
+                            <th class="text-left" style="width: 20%">Contact</th>
+                            <th class="text-left" style="width: 10%">Coord. géo.</th>
+                            <th class="text-left" style="width: 15%">Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+{% block javascripts %}
+{{parent()}}
+    <script>
+        $(function() {
+            $('#dataTables-1').dataTable({
+                "bProcessing": true,
+            });
+        });
+        </script>
+{% endblock javascripts %}

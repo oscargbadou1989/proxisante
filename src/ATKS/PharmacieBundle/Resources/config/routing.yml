@@ -1,0 +1,16 @@
+atks_pharmacie_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ATKSPharmacieBundle:Default:index }
+    
+atks_pharmacien_login:
+    pattern: /login
+    defaults: { _controller: ATKSUserBundle:SecurityPharmacien:login}
+
+atks_pharmacien_login_check:
+    pattern: /login_check
+    defaults: { _controller: ATKSUserBundle:SecurityPharmacien:loginCheck}
+    
+atks_pharmacien_logout:
+    pattern: /logout
+    defaults: { _controller: ATKSUserBundle:SecurityPharmacien:logout}
+    

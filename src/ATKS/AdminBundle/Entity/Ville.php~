@@ -1,0 +1,69 @@
+<?php
+
+namespace ATKS\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Ville
+ *
+ * @ORM\Table(name="atks_ville")
+ * @ORM\Entity(repositoryClass="ATKS\AdminBundle\Entity\VilleRepository")
+ */
+class Ville
+{
+    /**
+     * @ORM\OneToMany(targetEntity="ATKS\AdminBundle\Entity\Pharmacie", mappedBy="ville", cascade={"persist","remove"})
+     */
+    private $pharmacies;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=255)
+     */
+    private $adresse;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param string $adresse
+     * @return Ville
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+    
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return string 
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+}

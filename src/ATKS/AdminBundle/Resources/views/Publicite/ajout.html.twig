@@ -1,0 +1,136 @@
+{%extends "ATKSAdminBundle::layout.html.twig"%}
+{%block title%}{{parent()}} Ajout d'une publicité{%endblock title%}
+{%block body%}
+{%block bodycontent%}
+{{parent()}}
+<div class="grid fluid">
+    <div class="row">
+    <div class="span12">
+        <h2 id="__form__">Ajout d'une nouvelle publicité</h2>
+        <div class="example2" style="padding: 10px">
+            <form action="" {{ form_enctype(form) }} method="POST" data-prototype="{{form_widget(form.images.vars.prototype)|e}}" id="pub-form">
+                <div class="row">            
+                <div class="span6">
+                        {{ form_label(form.nomStructure, "Nom de la structure") }}
+                        <span style="color: red">{{ form_errors(form.nomStructure) }}</span>
+                        <div class="input-control text" data-role="input-control">
+                        {{ form_widget(form.nomStructure) }}
+                            <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                        
+                        {{ form_label(form.telephone, "Téléphone") }}
+                        <span style="color: red">{{ form_errors(form.telephone) }}</span>
+                        <div class="input-control text" data-role="input-control" >
+                        {{ form_widget(form.telephone) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                        
+                        {{ form_label(form.email, "Email") }}
+                        <span style="color: red">{{ form_errors(form.email) }}</span>
+                        <div class="input-control text" data-role="input-control" >
+                        {{ form_widget(form.email) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                                            
+                        {{ form_label(form.dateDebut, "Date de début") }}
+                        <span style="color: red">{{ form_errors(form.dateDebut) }}</span>
+                        <div class="input-control text" data-role="input-control" >
+                        {{ form_widget(form.dateDebut) }}
+                        </div>
+                        
+                        {{ form_label(form.dateFin, "Date de fin") }}
+                        <span style="color: red">{{ form_errors(form.dateFin) }}</span>
+                        <div class="input-control text" data-role="input-control" >
+                        {{ form_widget(form.dateFin) }}
+                        </div>
+                        
+                        <div style="margin-top: 10px;">
+                        <button type="submit" class="button large primary">
+                            <i class="icon-checkbox on-left"></i>
+                            Valider
+                        </button>
+                    </div>
+                        
+                </div>        
+                <div class="span6">
+                        {{ form_label(form.siteWeb, "Site Web") }}
+                        <span style="color: red">{{ form_errors(form.siteWeb) }}</span>
+                        <div class="input-control text" data-role="input-control" >
+                        {{ form_widget(form.siteWeb) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                        
+                        {{ form_label(form.adresse, "Adresse") }}
+                        <span style="color: red">{{ form_errors(form.adresse) }}</span>
+                        <div class="input-control text" data-role="input-control" >
+                        {{ form_widget(form.adresse) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                        
+                        {{ form_label(form.libelle, "Libéllé") }}
+                        <span style="color: red">{{ form_errors(form.libelle) }}</span>
+                        <div class="input-control text" data-role="input-control" >
+                        {{ form_widget(form.libelle) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                        
+                        {{ form_label(form.messageFlash, "Message flash") }}
+                        <span style="color: red">{{ form_errors(form.messageFlash) }}</span>
+                        <div class="input-control text" data-role="input-control" >
+                        {{ form_widget(form.messageFlash) }}
+                         <button class="btn-clear" tabindex="-1" type="button"></button>
+                        </div>
+                        {{ form_label(form.images, "Ajouter des images") }}
+                     {{ form_widget(form.images) }}
+                     <div id="image-container" >
+                                        
+                     </div>
+                        <div  style="margin-top: 10px">
+                        <a id="image-add" style="" href="javascript:void(0)" class="button large default">
+                            <i class="icon-pictures on-left"></i>
+                            Ajouter une image
+                        </a>
+                        </div>
+                        {#{ form_label(form.image.file, " Ajouter une image") }}
+                        <span class="erreur-form">{{ form_errors(form.image.file) }}</span>
+                        <div class="input-control file" data-role="input-control">
+                        {{ form_widget(form.image.file) }#}
+                        <!--<input type="text" id="__input_file_wrapper__" readonly="" style="z-index: 1; cursor: default;">
+                        <button class="btn-file" type="button"></button>
+                        </div> -->
+                        
+                        
+                        {{ form_label(form.actif, "Actif") }}
+                        <span style="color: red">{{ form_errors(form.messageFlash) }}</span>
+                        {{ form_widget(form.actif) }}
+                        
+                </div>   
+             </div> 
+    {{ form_widget(form) }}
+                    
+                    
+
+                </form>
+            </div> 
+        </div> 
+        </div> 
+    </div>            
+
+{%endblock bodycontent%}
+{%endblock body%}
+{%block javascripts%}
+{{parent()}}
+<script type="text/javascript">
+       $("#image-add").click(function(e){
+           e.preventDefault();
+           addImageToForm();
+       });
+        function addImageToForm(imageContainer){
+            imageContainer = $("#image-container");
+            var prototype = $("#pub-form").attr("data-prototype");
+            var newImageForm = prototype.replace(/__name__/g, imageContainer.children().length);
+            imageContainer.append(newImageForm);
+        }
+                                
+</script>
+{%endblock javascripts%}

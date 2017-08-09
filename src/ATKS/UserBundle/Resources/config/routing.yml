@@ -1,0 +1,53 @@
+atks_user_accueil:
+    pattern:  /
+    defaults: { _controller: ATKSUserBundle:Accueil:accueil }
+    
+atks_user_list_hopital_plus_proche:
+    pattern:  /les-hopitaux-les-plus-proche
+    defaults: { _controller: ATKSUserBundle:Hopital:listHopitalPlusProche }
+    
+atks_user_list_pharmacie_plus_proche:
+    pattern:  /les-pharmacies-les-plus-proche
+    defaults: { _controller: ATKSUserBundle:Pharmacie:listPharmaciePlusProche }
+    
+atks_user_recherche_service_sante:
+    pattern:  /rechercher/service-sante
+    defaults: { _controller: ATKSUserBundle:Hopital:recherche }
+
+atks_user_detail_hopital:
+    pattern: /detail/hopital/{id}
+    defaults: { _controller: ATKSUserBundle:Hopital:detailHopital }
+    requirements:
+      id: \d+
+
+atks_user_detail_pharmacie:
+    pattern: /detail/pharmacie/{id}
+    defaults: { _controller: ATKSUserBundle:Pharmacie:detailPharmacie }
+    requirements:
+      id: \d+
+
+atks_user_list_hopitaux_disposant_service:
+    pattern: /hopitaux-disposant-service/{id}
+    defaults: { _controller: ATKSUserBundle:Hopital:lesHopitauxDisposantUnService }
+    requirements:
+      id: \d+
+      
+atks_user_bulletin_educ_plus:
+    pattern:  /bulletin-educ-plus
+    defaults: { _controller: ATKSUserBundle:Accueil:bulletinEducPlus }
+      
+atks_user_soumettre_probleme:
+    pattern:  /soumettre/probleme
+    defaults: { _controller: ATKSUserBundle:Accueil:soumettreProbleme }
+      
+atks_user_psm_accueil:
+    pattern:  /psmobile
+    defaults: { _controller: ATKSUserBundle:Accueil:proxiSanteMobileAccueil }
+      
+atks_user_ajout_hopital_user:
+    pattern:  /ah
+    defaults: { _controller: ATKSUserBundle:CentreSanteUser:ajouterHopital }
+      
+atks_user_ajout_pharmacie_user:
+    pattern:  /ap
+    defaults: { _controller: ATKSUserBundle:CentreSanteUser:ajouterPharmacie }

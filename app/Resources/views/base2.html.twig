@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="description" content="Service gratuit vous permettant d'avoir un accès facile à l'information sanitaire autour de vous">
+        <meta name="keywords" content="Bénin, 229, santé, proximité, proxisante, hopital, pharmacie, secours, service de santé,">
+        <meta name="author" content="Oscar GBADOU">
+        <title>{% block title %}Proxi Santé |{% endblock title%}</title>
+        {% block stylesheets %}
+        <link rel="shortcut icon" type="image/x-icon" href="{{asset('bundles/atksadmin/images/favicon.ico')}}"> 
+        <link href="{{asset('bundles/atksadmin/css/metro-bootstrap.css')}}" rel="stylesheet" />
+        <link href="{{asset('bundles/atksadmin/css/metro-bootstrap-responsive.css')}}" rel="stylesheet" />
+        <link href="{{asset('bundles/atksadmin/css/iconFont.css')}}" rel="stylesheet" />
+        <link href="{{asset('bundles/atksadmin/css/ddpcss.css')}}" rel="stylesheet" />
+        {% endblock stylesheets%}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    {%set vars = getVars()%}
+    <body class="metro">
+        {% block header %}
+            <header style="">
+                <nav class="navigation-bar fixed-top bg-green dark">
+                    <nav class="navigation-bar-content container">
+                        {%block headercontent%}
+
+                        {%endblock headercontent%}
+                        </nav>
+                    </nav>
+                </header>
+        {% endblock header%}
+
+                    {% block body %}
+                <div class="container">
+                    <div class="main-content clearfix" style="">
+
+
+                    </div> <!-- End of tiles -->
+                </div>
+                    {% endblock body %}
+
+        {%block footer%}
+                <footer>
+                    <div class="container">
+                        <div class="main-content clearfix">
+                            <div class="grid" style="">
+                                <div class="row">
+                                    <div class="span3">
+                                        <a href="#"><span class="tile-group-title fg-black">NOS PARTENAIRES <span class="icon-arrow-right-5"></span></span></a><br/><br/>
+                                        <a href="http://cnhu-hkm.org/"><img src="{{asset('bundles/atksuser/images/partenaires/cnhu.PNG')}}" style="width: 50px; height: 44px; margin-right: 3px" title=""/></a>
+                                        <a href="#"><img src="{{asset('bundles/atksuser/images/partenaires/afriquebuzz.png')}}" style="width: 44px; height: 44px; margin-right: 3px" title=""/></a>
+                                        <a href="#"><img src="{{asset('bundles/atksuser/images/partenaires/cfir.png')}}" style="width: 103px; height: 44px; margin-right: 3px" title=""/></a>
+                                        <a href="#"><img src="{{asset('bundles/atksuser/images/partenaires/saveursdubenin.png')}}" style="width: 44px; height: 44px; margin-right: 3px" title=""/></a>
+                                    </div>
+                                    <div class="span4">
+                                        <div class="fb-like-box" data-href="https://www.facebook.com/229proxisante" data-width="300" data-height="300" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+                                    </div>    
+                                    <div class="span5">
+                                        <iframe width="560" height="315" src="//www.youtube.com/embed/XwG6wecPVTg" frameborder="0" allowfullscreen></iframe>
+                                    </div>    
+                                    <!--<div class="span3">
+                                        <a href="#"><span class="tile-group-title fg-black">RETROUVES NOUS SUR <span class="icon-arrow-right-5"></span></span></a><br/><br/>
+                                        <!--<a class="command-button primary" href="http://www.facebook.com/229proxisante" target="_blank">
+                                            <i class="icon-facebook on-left"></i>
+                                            Facebook
+                                            <small style="font-size: 10px">Notre page Facebook</small>
+                                        </a>-->
+                                        <!--<a class="command-button bg-red fg-white" href="#">
+                                            <i class="icon-google-plus on-left"></i>
+                                            Google Plus
+                                            <small style="font-size: 10px">Notre page Google Plus</small>
+                                        </a>
+                                    </div>-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-menu-wrapper container">
+                        <ul class="horizontal-menu compact">
+                            <li>© 2014 PROXI SANTE</li>
+                            <li><a href="{{path('atks_user_ajout_hopital_user')}}">Ajouter un hôpital</a></li>
+                            <li><a href="{{path('atks_user_ajout_pharmacie_user')}}">Ajouter une pharmacie</a></li>
+                            <li><a href="">A propos</a></li>
+                            <li><a href="">Contact</a></li>
+                            <li><a href=""class="fg-orange" >Faire un don</a></li>
+                        </ul>
+                    </div>
+                </footer>
+        {%endblock footer%}
+        {% block javascripts %}
+                <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+                <script src="{{asset('bundles/atksadmin/js/jquery.min.js')}}"></script>
+                <script src="{{asset('bundles/atksadmin/js/jquery.widget.min.js')}}"></script>
+                <script src="{{asset('bundles/atksadmin/js/jquery.mousewheel.js')}}"></script>
+                <script src="{{asset('bundles/atksadmin/js/metro.min.js')}}"></script>
+                <script src="{{asset('bundles/atksadmin/js/ddpjs.js')}}"></script>
+                <script>
+                    $("#reglageRayonRecherce").on('click', function() {
+                        $.Dialog({
+                            shadow: true,
+                            overlay: true,
+                            draggable: true,
+                            icon: '<span class="icon-bus"></span>',
+                            title: 'Draggable window',
+                            width: 500,
+                            padding: 10,
+                            content: 'This Window is draggable by caption.',
+                            onShow: function() {
+                                var content = '<div style="margin-top: 25px; margin-bottom: 10px"><label>Le rayon est en km</label><input id="input-rayon-setting" type="number" name="rayon" style="width: 100%" value="' + localStorage.getItem("rayon") + '"/></div>' +
+                                        '<button class="button primary" onClick="setRayonRecherche()">Valider</button>&nbsp;' +
+                                        '<button class="button" type="button" onclick="$.Dialog.close()">Annuler</button> ';
+                                $.Dialog.title("Réglage du rayon de recherche");
+                                $.Dialog.content(content);
+                            }
+
+                        });
+                    });
+                    $("#createWindowDraggable").on('click', function() {
+                        $.Dialog({
+                            shadow: true,
+                            overlay: true,
+                            draggable: true,
+                            icon: '<span class="icon-bus"></span>',
+                            title: 'Draggable window',
+                            width: 500,
+                            padding: 10,
+                            content: 'This Window is draggable by caption.',
+                            onShow: function() {
+                                var content = '<form id="login-form-1" method="post" action="{{path('atks_user_soumettre_probleme')}}">' +
+                                        '<label>N° Téléphone ou email</label>' +
+                                        '<div class="input-control text"><input type="text" name="telephoneOuMail"><button class="btn-clear"></button></div>' +
+                                        '<label>Contenu</label>' +
+                                        '<div class="input-control textarea" data-role="input-control"><textarea name="contenu"></textarea></div>' +
+                                        '<div class="form-actions">' +
+                                        '<button type="submit" class="button primary">Valider</button>&nbsp;' +
+                                        '<button class="button" type="button" onclick="$.Dialog.close()">Annuler</button> ' +
+                                        '</div>' +
+                                        '</form>';
+
+                                $.Dialog.title("Soumission de problème ou de suggestion");
+                                $.Dialog.content(content);
+                            }
+
+                        });
+                    });
+                    $("#serviceSante").on('click', function() {
+                        $.Dialog({
+                            shadow: true,
+                            overlay: true,
+                            draggable: true,
+                            icon: '<span class="icon-bus"></span>',
+                            title: 'Draggable window',
+                            width: 500,
+                            height: 400,
+                            padding: 10,
+                            content: 'This Window is draggable by caption.',
+                            onShow: function() {
+                                var content = '<div style="height: 400px; overflow: scroll" data-role="scrollbox" data-scroll="vertical"><div class="listview-outlook" data-role="listview" style="margin: 10px">' +
+                                        '{%for s in vars.services%}' +
+                                        '<a href="{{path('atks_user_list_hopitaux_disposant_service', {'id': s.id})}}?lat=' + localStorage.getItem('latitude') + '&lon=' + localStorage.getItem('longitude') + '&rayon=' + localStorage.getItem('rayon') + '" class="list marked" title="Cliquer pour voir les hopitaux les plus proches qui disposent de ce service">' +
+                                        '<div class="list-content">' +
+                                        '<span class="list-title">' + '{{s.nom}}' + '</span>' +
+                                        '</div>' +
+                                        '</a>' +
+                                        '{%endfor%}' +
+                                        '</div></div>';
+
+                                $.Dialog.title("Les services de santé");
+                                $.Dialog.content(content);
+                            }
+
+                        });
+                    });
+                    </script>
+                    <div id="fb-root"></div>
+                    <script>(function(d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id))
+                                return;
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&appId=127296484084777&version=v2.0";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+        {% endblock javascripts%}
+                    </body>
+                </html>

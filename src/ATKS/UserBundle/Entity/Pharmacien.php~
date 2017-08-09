@@ -1,0 +1,31 @@
+<?php
+
+namespace ATKS\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
+
+/**
+ * Pharmacien
+ *
+ * @ORM\Table(name="atks_pharmacien")
+ * @ORM\Entity(repositoryClass="ATKS\UserBundle\Entity\PharmacienRepository")
+ * @UniqueEntity(fields = "username", targetClass = "ATKS\UserBundle\Entity\User", message="fos_user.username.already_used")
+ * @UniqueEntity(fields = "email", targetClass = "ATKS\UserBundle\Entity\User", message="fos_user.email.already_used")
+ */
+class Pharmacien extends User
+{
+    /**
+     * @ORM\ManyToOne(targetEntity="ATKS\AdminBundle\Entity\Pharmacie")
+     */
+    private $pharmacie;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+}

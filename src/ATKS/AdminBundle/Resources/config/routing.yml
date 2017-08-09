@@ -1,0 +1,371 @@
+atks_admin_accueil:
+    pattern:  /
+    defaults: { _controller: ATKSAdminBundle:Accueil:accueil }
+
+atks_admin_login:
+    pattern: /login
+    defaults: { _controller: ATKSUserBundle:SecurityAdmin:login}
+
+atks_admin_login_check:
+    pattern: /login_check
+    defaults: { _controller: ATKSUserBundle:SecurityAdmin:loginCheck}
+
+atks_admin_logout:
+    pattern: /logout
+    defaults: { _controller: ATKSUserBundle:SecurityAdmin:logout}
+
+atks_admin_registration_register:
+    pattern:  /register
+    defaults: { _controller: ATKSUserBundle:RegistrationAdmin:register }
+
+atks_admin_registration_check_email:
+    pattern:  /register/check_email
+    defaults: { _controller: ATKSUserBundle:RegistrationAdmin:checkEmail }
+    requirements:
+        _method : GET
+
+atks_admin_registration_confirm:
+    pattern : /register/confirm/{token}
+    defaults: { _controller: ATKSUserBundle:RegistrationAdmin:confirm }
+    requirements:
+        _method : GET
+
+atks_admin_registration_confirmed:
+    pattern : /register/confirmed
+    defaults: { _controller: ATKSUserBundle:RegistrationAdmin:confirmed }
+    requirements:
+        _method : GET
+
+atks_pharmacien_registration_register:
+    pattern:  /pharmacien/register
+    defaults: { _controller: ATKSUserBundle:RegistrationPharmacien:register }
+
+atks_pharmacien_registration_check_email:
+    pattern:  /pharmacien/register/check_email
+    defaults: { _controller: ATKSUserBundle:RegistrationPharmacien:checkEmail }
+    requirements:
+        _method : GET
+
+atks_pharmacien_registration_confirm:
+    pattern : /pharmacien/register/confirm/{token}
+    defaults: { _controller: ATKSUserBundle:RegistrationPharmacien:confirm }
+    requirements:
+        _method : GET
+
+atks_pharmacien_registration_confirmed:
+    pattern : /pharmacien/register/confirmed
+    defaults: { _controller: ATKSUserBundle:RegistrationPharmacien:confirmed }
+    requirements:
+        _method : GET
+
+atks_admin_list_admin:
+    pattern: /list/admin
+    defaults: { _controller: ATKSAdminBundle:Admin:listAdmin}
+
+atks_admin_supprimer_admin:
+    pattern: /supprimer/admin/{id}
+    defaults: { _controller: ATKSAdminBundle:Admin:listAdmin}
+    requirements:
+      id: \d+
+
+atks_admin_list_pharmacien:
+    pattern: /list/pharmacien/{page}
+    defaults: { _controller: ATKSAdminBundle:Admin:listPharmacien, page: 1}
+    requirements:
+      page: \d+
+
+atks_admin_supprimer_pharmacien:
+    pattern: /supprimer/pharmacien/{id}
+    defaults: { _controller: ATKSAdminBundle:Admin:supprimerPharmacien}
+    requirements:
+      id: \d+
+
+atks_admin_list_service_sante:
+    pattern: /list/service-sante
+    defaults: { _controller: ATKSAdminBundle:ServiceSante:list}
+
+atks_admin_list_specialite_pharmacie:
+    pattern: /list/specialite-pharmacie
+    defaults: { _controller: ATKSAdminBundle:SpecialitePharmacie:list}
+
+atks_admin_modifier_service_sante:
+    pattern: /modifier/service-sante/{id}
+    defaults: { _controller: ATKSAdminBundle:ServiceSante:modifier}
+    requirements:
+      id: \d+
+
+atks_admin_modifier_specialite_pharmacie:
+    pattern: /modifier/specialite-pharmacie/{id}
+    defaults: { _controller: ATKSAdminBundle:SpecialitePharmacie:modifier}
+    requirements:
+      id: \d+
+
+atks_admin_supprimer_service_sante:
+    pattern: /supprimer/service-sante/{id}
+    defaults: { _controller: ATKSAdminBundle:ServiceSante:supprimer}
+    requirements:
+      id: \d+
+
+atks_admin_supprimer_specialite_pharmacie:
+    pattern: /supprimer/specialite-pharmacie/{id}
+    defaults: { _controller: ATKSAdminBundle:SpecialitePharmacie:supprimer}
+    requirements:
+      id: \d+
+
+atks_admin_list_hopital:
+    pattern: /list/hopital/{page}
+    defaults: { _controller: ATKSAdminBundle:Hopital:list, page: 1}
+    requirements:
+      page: \d+
+
+atks_admin_list_pharmacie:
+    pattern: /list/pharmacie/{page}
+    defaults: { _controller: ATKSAdminBundle:Pharmacie:list, page: 1}
+    requirements:
+      page: \d+
+
+atks_admin_modifier_hopital:
+    pattern: /modifier/hopital/{id}
+    defaults: { _controller: ATKSAdminBundle:Hopital:modifier }
+    requirements:
+      id: \d+
+
+atks_admin_modifier_pharmacie:
+    pattern: /modifier/pharmacie/{id}
+    defaults: { _controller: ATKSAdminBundle:Pharmacie:modifier }
+    requirements:
+      id: \d+
+
+atks_admin_supprimer_hopital:
+    pattern: /supprimer/hopital/{id}
+    defaults: { _controller: ATKSAdminBundle:Hopital:supprimer }
+    requirements:
+      id: \d+
+
+atks_admin_supprimer_pharmacie:
+    pattern: /supprimer/pharmacie/{id}
+    defaults: { _controller: ATKSAdminBundle:Pharmacie:supprimer }
+    requirements:
+      id: \d+
+
+atks_admin_ajout_hopital:
+    pattern: /ajout/hopital
+    defaults: { _controller: ATKSAdminBundle:Hopital:ajout }
+
+atks_admin_ajout_hopital_service:
+    pattern: /ajout/hopital-service
+    defaults: { _controller: ATKSAdminBundle:HopitalService:ajout }
+
+atks_admin_voir_hopital_service:
+    pattern: /voir/hopital-service/{id}
+    defaults: { _controller: ATKSAdminBundle:Hopital:voirService }
+    requirements:
+      id: \d+
+
+atks_admin_voir_hopital_disposant_service:
+    pattern: /voir/hopital-disposant-service/{id}
+    defaults: { _controller: ATKSAdminBundle:Hopital:voirHopitalDisposantUnService }
+    requirements:
+      id: \d+
+
+atks_admin_modifier_hopital_service:
+    pattern: /modifier/hopital-service/{id}
+    defaults: { _controller: ATKSAdminBundle:HopitalService:modifier }
+    requirements:
+      id: \d+
+
+atks_admin_supprimer_hopital_service:
+    pattern: /supprimer/hopital-service/{id}
+    defaults: { _controller: ATKSAdminBundle:HopitalService:supprimer }
+    requirements:
+      id: \d+
+
+atks_admin_ajout_pharmacie:
+    pattern: /ajout/pharmacie
+    defaults: { _controller: ATKSAdminBundle:Pharmacie:ajout }
+
+atks_admin_ajout_pharmacie_specialite:
+    pattern: /ajout/pharmacie-specialite
+    defaults: { _controller: ATKSAdminBundle:PharmacieSpecialite:ajout }
+
+atks_admin_modifier_pharmacie_specialite:
+    pattern: /modifier/pharmacie-specialite/{id}
+    defaults: { _controller: ATKSAdminBundle:PharmacieSpecialite:modifier }
+    requirements:
+      id: \d+
+
+atks_admin_voir_pharmacie_specialite:
+    pattern: /voir/pharmacie-specialite/{id}
+    defaults: { _controller: ATKSAdminBundle:Pharmacie:voirSpecialite }
+    requirements:
+      id: \d+
+
+atks_admin_voir_pharmacie_disposant_specialite:
+    pattern: /voir/pharmacie-disposant-specialite/{id}
+    defaults: { _controller: ATKSAdminBundle:Pharmacie:voirPharmacieDisposantSpecialite }
+    requirements:
+      id: \d+
+
+atks_admin_supprimer_pharmacie_specialite:
+    pattern: /supprimer/pharmacie-specialite/{id}
+    defaults: { _controller: ATKSAdminBundle:PharmacieSpecialite:supprimer }
+    requirements:
+      id: \d+
+
+atks_admin_list_produit:
+    pattern: /list/produit/{page}
+    defaults: { _controller: ATKSAdminBundle:Produit:list, page: 1}
+    requirements:
+      page: \d+
+
+atks_admin_modifier_produit:
+    pattern: /modifier/produit/{id}
+    defaults: { _controller: ATKSAdminBundle:Produit:modifier }
+    requirements:
+      id: \d+
+
+atks_admin_supprimer_produit:
+    pattern: /supprimer/produit/{id}
+    defaults: { _controller: ATKSAdminBundle:Produit:supprimer }
+    requirements:
+      id: \d+
+
+atks_admin_ajout_produit:
+    pattern: /ajout/produit
+    defaults: { _controller: ATKSAdminBundle:Produit:ajout }
+
+atks_admin_list_probleme:
+    pattern: /list/probleme/{page}
+    defaults: { _controller: ATKSAdminBundle:Probleme:list, page: 1 }
+    requirements:
+      page: \d+
+
+atks_admin_marquer_vue_probleme:
+    pattern: /marquer-vue/probleme/{id}
+    defaults: { _controller: ATKSAdminBundle:Probleme:marquerVue }
+    requirements:
+      id: \d+
+
+atks_admin_supprimer_probleme:
+    pattern: /supprimer/probleme/{id}
+    defaults: { _controller: ATKSAdminBundle:Probleme:supprimer }
+    requirements:
+      id: \d+
+
+atks_admin_marquer_tout_vu_probleme:
+    pattern: /marquer-tout-vu/probleme
+    defaults: { _controller: ATKSAdminBundle:Probleme:marquerToutVu }
+
+atks_admin_list_utilisateur:
+    pattern: /list/utilisateur/{page}
+    defaults: { _controller: ATKSAdminBundle:Admin:listUtilisateur, page: 1 }
+    requirements:
+      page: \d+
+
+atks_admin_list_visiteur:
+    pattern: /list/visiteur/{page}
+    defaults: { _controller: ATKSAdminBundle:Admin:listVisiteur, page: 1 }
+    requirements:
+      page: \d+
+
+atks_admin_supprimer_utilisateur:
+    pattern: /supprimer/utilisateur/{id}
+    defaults: { _controller: ATKSAdminBundle:Admin:supprimerUtilisateur}
+    requirements:
+      id: \d+
+
+atks_admin_list_publicite:
+    pattern: /list/publicite/{page}
+    defaults: { _controller: ATKSAdminBundle:Publicite:list, page: 1}
+    requirements:
+      page: \d+
+
+atks_admin_ajout_publicite:
+    pattern: /ajout/publicite
+    defaults: { _controller: ATKSAdminBundle:Publicite:ajout }
+
+atks_admin_marquer_vue_visiteur_tout:
+    pattern: /marquer-vue/tout-visiteur
+    defaults: { _controller: ATKSAdminBundle:Admin:marquerVisiteurToutVu }
+
+atks_admin_marquer_vue_visiteur:
+    pattern: /marquer-vue/visiteur/{id}
+    defaults: { _controller: ATKSAdminBundle:Admin:marquerVisiteurVue }
+    requirements:
+      id: \d+
+
+atks_admin_marquer_vue_utilisateur_tout:
+    pattern: /marquer-vue/tout-utilisateur
+    defaults: { _controller: ATKSAdminBundle:Admin:marquerUtilisateurToutVu }
+
+atks_admin_marquer_vue_utilisateur:
+    pattern: /marquer-vue/utilisateur/{id}
+    defaults: { _controller: ATKSAdminBundle:Admin:marquerUtilisateurVue }
+    requirements:
+      id: \d+
+
+atks_admin_supprimer_visiteur:
+    pattern: /supprimer/visiteur/{id}
+    defaults: { _controller: ATKSAdminBundle:Admin:supprimerVisiteur }
+    requirements:
+      id: \d+
+
+atks_admin_list_hopital_soumis_user:
+    pattern: /hopitaux/soumis-par-user/{page}
+    defaults: { _controller: ATKSAdminBundle:CentreSanteUser:listHopital, page: 1 }
+    requirements:
+      page: \d+
+
+atks_admin_marquer_hopitaux_vue:
+    pattern: /marquer-vue/hopitaux-user
+    defaults: { _controller: ATKSAdminBundle:CentreSanteUser:marquerHopitauxVue }
+
+atks_admin_marquer_hopital_vue:
+    pattern: /marquer-vue/hopital-user/{id}
+    defaults: { _controller: ATKSAdminBundle:CentreSanteUser:marquerHopitalVue }
+    requirements:
+      id: \d+
+
+atks_admin_supprimer_hopital_user:
+    pattern: /supprimer/hopital-user/{id}
+    defaults: { _controller: ATKSAdminBundle:CentreSanteUser:supprimerHopital }
+    requirements:
+      id: \d+
+
+atks_admin_list_pharmacie_soumis_user:
+    pattern: /pharmacie/soumis-par-user/{page}
+    defaults: { _controller: ATKSAdminBundle:CentreSanteUser:listPharmacie, page: 1 }
+    requirements:
+      page: \d+
+
+atks_admin_marquer_pharmacies_vue:
+    pattern: /marquer-vue/pharmacies-user
+    defaults: { _controller: ATKSAdminBundle:CentreSanteUser:marquerPharmaciesVue }
+
+atks_admin_marquer_pharmacie_vue:
+    pattern: /marquer-vue/pharmacie-user/{id}
+    defaults: { _controller: ATKSAdminBundle:CentreSanteUser:marquerPharmacieVue }
+    requirements:
+      id: \d+
+
+atks_admin_supprimer_pharmacie_user:
+    pattern: /supprimer/pharmacie-user/{id}
+    defaults: { _controller: ATKSAdminBundle:CentreSanteUser:supprimerPharmacie }
+    requirements:
+      id: \d+
+
+atks_admin_ajout_plainte:
+    pattern: /ajout/plainte
+    defaults: { _controller: ATKSAdminBundle:Plainte:ajout }
+
+atks_admin_fb_user:
+    pattern: /fb/users/{page}
+    defaults: { _controller: ATKSAdminBundle:BotMessenger:fbUsers, page: 1 }
+
+atks_admin_fb_message:
+    pattern: /fb/message/{page}
+    defaults: { _controller: ATKSAdminBundle:BotMessenger:fbMessage, page: 1 }
+
+atks_admin_fb_interrogatoire:
+    pattern: /fb/interrogatoire/{page}
+    defaults: { _controller: ATKSAdminBundle:BotMessenger:fbInterrogatoire, page: 1 }

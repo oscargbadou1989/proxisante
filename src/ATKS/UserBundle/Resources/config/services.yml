@@ -1,0 +1,32 @@
+parameters:
+#    atks_user.example.class: ATKS\UserBundle\Example
+
+services:
+    atks_pharmacien_registration_manager:
+        class: ATKS\UserBundle\Controller\RegistrationPharmacienManager
+        arguments: ["@pugx_user.manager.user_discriminator", "@service_container", "@atks_pharmacien.registration_controller", "@fos_user.registration.form.factory"]
+      
+    atks_pharmacien.registration_controller:
+      class: ATKS\UserBundle\Controller\FOSRegistrationPharmacienController
+    
+    atks_pharmacien.registration.form.type:
+        class: ATKS\UserBundle\Form\Type\RegistrationPharmacienFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: atks_userbundle_pharmacien }
+            
+    atks_admin_registration_manager:
+        class: ATKS\UserBundle\Controller\RegistrationAdminManager
+        arguments: ["@pugx_user.manager.user_discriminator", "@service_container", "@atks_admin.registration_controller", "@fos_user.registration.form.factory"]
+      
+    atks_admin.registration_controller:
+      class: ATKS\UserBundle\Controller\FOSRegistrationAdminController
+    
+    atks_admin.registration.form.type:
+        class: ATKS\UserBundle\Form\Type\RegistrationAdminFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: atks_userbundle_admin }
+#    atks_user.example:
+#        class: %atks_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

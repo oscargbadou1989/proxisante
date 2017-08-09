@@ -1,0 +1,95 @@
+{%extends "ATKSAdminBundle::layout.html.twig"%}
+{%block title%}{{parent()}} Liste des pharmacies qui dispose de la spécialité {{specialite.nom}}{%endblock title%}
+{% block body %}
+{{parent()}}
+
+<div class="grid fluid">
+    <div class="row">
+        <h2 id="__form__">Liste des pharmacies qui dispose de la spécialité {{specialite.nom}}</h2>
+        <div class="example2" style="padding: 10px">
+            <table class="table striped hovered dataTable" id="dataTables-1">
+                <thead>
+                    <tr>
+                        <th class="text-left" style="width: 10%">Image</th>
+                            <th class="text-left" style="width: 15%">Nom</th>
+                            <th class="text-left" style="width: 10%">Adresse</th>
+                            <th class="text-left" style="width: 10%">Contact</th>
+                            <th class="text-left" style="width: 10%">Horaire d'ouverture</th>
+                            <th class="text-left" style="width: 10%">Pharmacien</th>
+                            <th class="text-left" style="width: 10%">Coord. géo.</th>
+                            <th class="text-left" style="width: 10%">Autres infos</th>
+                            <th class="text-left" style="width: 15%">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {%for ps in pharmacieSpecialite%}
+                        <tr>
+                            <td>
+                                {%if ps.pharmacie.image%}
+                                    <img src="{{asset(ps.pharmacie.image.webPath)}}" style="width: 60px; height: 60px"/>
+                                {%else%}
+                                <img src="{{asset('bundles/atksadmin/images/caducee-pharmacie.jpg')}}" style="width: 60px; height: 60px"/>
+                                {%endif%}
+                            </td>
+                            <td>{{ps.pharmacie.nom}}</td>
+                            <td>{{ps.pharmacie.adresse}}</td>
+                            <td> 
+                                {%if ps.pharmacie.telephone%}Tél: {{ps.pharmacie.telephone}}{%endif%}<br/>
+                                {%if ps.pharmacie.fax%}Fax: {{ps.pharmacie.fax}}{%endif%}<br/>
+                                {%if ps.pharmacie.email%}Email: <a href="mailto:{{ps.pharmacie.email}}">{{ps.pharmacie.email}}</a>{%endif%}<br/>
+                                {%if ps.pharmacie.siteWeb%}Site Web: <a href="http://{{ps.pharmacie.siteWeb}}">{{ps.pharmacie.siteWeb}}</a>{%endif%}<br/>
+                            </td>
+                            <td> 
+                                {{ps.pharmacie.heureOuverture|date('H')}}H - {{ps.pharmacie.heureFermeture|date('H')}}H
+                            </td>
+                            <td> 
+                                {{ps.pharmacie.nomPharmacien}} ({{ps.pharmacie.qualificationPharmacien}})
+                            </td>
+                            <td> 
+                                Lon: {{ps.pharmacie.longitude}}<br/>
+                                Lat: {{ps.pharmacie.latitude}}<br/>
+                                Alt: {{ps.pharmacie.altitude}}
+                            </td>
+                            <td> 
+                                {{ps.pharmacie.autreInfo}}
+                            </td>
+                            <td>
+                                <div class="toolbar" style="float: right">
+                                    <a href="{{path('atks_admin_voir_pharmacie_specialite', {'id':ps.pharmacie.id})}}" class="button js-show-all-streams" title="Voir les spécialités de cette pharmacie" data-role=""><span class="icon-eye"></span></a>
+                                    <a href="{{path('atks_admin_modifier_pharmacie', {'id':ps.pharmacie.id})}}" class="button js-show-all-streams" title="Modifier" data-role=""><span class="icon-pencil"></span></a>
+                                    <a href="{{path('atks_admin_supprimer_pharmacie', {'id':ps.pharmacie.id})}}" class="button js-show-all-streams" title="Supprimer" data-role=""><span class="icon-remove"></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                    {%endfor%}
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th class="text-left" style="width: 10%">Image</th>
+                            <th class="text-left" style="width: 15%">Nom</th>
+                            <th class="text-left" style="width: 10%">Adresse</th>
+                            <th class="text-left" style="width: 10%">Contact</th>
+                            <th class="text-left" style="width: 10%">Horaire d'ouverture</th>
+                            <th class="text-left" style="width: 10%">Pharmacien</th>
+                            <th class="text-left" style="width: 10%">Coord. géo.</th>
+                            <th class="text-left" style="width: 10%">Autres infos</th>
+                            <th class="text-left" style="width: 15%">Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+{% block javascripts %}
+{{parent()}}
+    <script>
+        $(function() {
+            $('#dataTables-1').dataTable({
+                "bProcessing": true,
+            });
+        });
+        </script>
+{% endblock javascripts %}

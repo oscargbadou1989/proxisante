@@ -1,0 +1,73 @@
+{%extends "ATKSAdminBundle::layout.html.twig"%}
+{%block title%}{{parent()}} Les services de santé de {{hopital.nom}}{%endblock title%}
+{% block body %}
+{{parent()}}
+
+<div class="grid fluid">
+    <div class="row">
+        <h2 id="__form__">Les services de santé de {{hopital.nom}}</h2>
+        <div class="example2" style="padding: 10px">
+            <table class="table striped hovered dataTable" id="dataTables-1">
+                <thead>
+                    <tr>
+                            <th class="text-left" style="width: 20%">Nom</th>
+                            <th class="text-left" style="width: 15%">Horaire d'ouverture</th>
+                            <th class="text-left" style="width: 20%">Spécialiste</th>
+                            <th class="text-left" style="width: 20%">Frais de prestation</th>
+                            <th class="text-left" style="width: 10%">Autre infos</th>
+                            <th class="text-left" style="width: 15%">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {%for hs in hopitalService%}
+                        <tr>
+                            <td>{{hs.service.nom}}</td>
+                            <td>
+                                {{hs.heureOuverture|date('H')}}H - {{hs.heureFermeture|date('H')}}H
+                            </td>
+                            <td>
+                                {%if hs.nomSpecialiste%}Nom: {{hs.nomSpecialiste}} ({{hs.qualificationSpecialiste}}){%endif%}<br/>
+                                {%if hs.telephoneSpecialiste%}Tél: {{hs.telephoneSpecialiste}}{%endif%}
+                            </td>
+                            <td>
+                                {{hs.fraisPrestation}}
+                            </td>
+                            <td>
+                                {{hs.autreInfo}}
+                            </td>
+                            <td>
+                                <div class="toolbar" style="float: right">
+                                    <a href="{{path('atks_admin_modifier_hopital_service', {'id':hs.id})}}" class="button js-show-all-streams" title="Modifier" data-role=""><span class="icon-pencil"></span></a>
+                                    <a href="{{path('atks_admin_supprimer_hopital_service', {'id':hs.id})}}" class="button js-show-all-streams" title="Supprimer" data-role=""><span class="icon-remove"></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                    {%endfor%}
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th class="text-left" style="width: 20%">Nom</th>
+                            <th class="text-left" style="width: 15%">Horaire d'ouverture</th>
+                            <th class="text-left" style="width: 20%">Spécialiste</th>
+                            <th class="text-left" style="width: 20%">Frais de prestation</th>
+                            <th class="text-left" style="width: 10%">Autre infos</th>
+                            <th class="text-left" style="width: 15%">Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+{% block javascripts %}
+{{parent()}}
+    <script>
+        $(function() {
+            $('#dataTables-1').dataTable({
+                "bProcessing": true,
+            });
+        });
+        </script>
+{% endblock javascripts %}
